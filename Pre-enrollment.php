@@ -240,7 +240,7 @@
                   <div id="table-scroll">
                       <table class="table" id="copy">
         						    <tr>
-        						      <th>Course Number</th>
+        						        <th>Course Number</th>
         							    <th>Descriptive Title</th>
         							    <th>Term</th>
         							    <th>Units</th>
@@ -266,7 +266,7 @@
                                 echo "<tr>";
                                 echo "<td>".$course."</td>";
                                 echo "<td>".$desctitle."</td>";
-                                echo "<td>".$tr."</td>";
+                                echo "<td>".$tr"</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
                                 <button onclick=clearData(this);deleteRow(this); class='btn btn-default btn-sm'>

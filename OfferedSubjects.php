@@ -86,35 +86,29 @@
 
         <div class="row">
                 <?php
-                $totalunits = "0";
+                $totalunits = "";
                  
                 $last_name  = "";
                 $first_name = "";
                 $course     = "";
                 $year       = "";
                 
-                if($_SERVER['REQUEST_METHOD'] == 'POST') {
-                  if( isset($_POST['input']) ){
+            
                     include 'dbcon.php';
 
-                    $Idnumber = check_input($_POST['input']);
-                    $stmt = $pdo->query("SELECT * FROM students WHERE id_number = '$Idnumber'");
+                    $idnumber = $_SESSION['username'];
+                    $stmt = $pdo->query("SELECT last_name, first_name, course, year FROM students WHERE id_number = '$idnumber'");
                     $countQuery = $stmt->rowCount();
                     if ($countQuery == 0){
                         echo "Student does not Exists!";
                     } else {
                     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    $idnumber = $Idnumber;
+                    $idnumber = $idnumber;
                     $last_name  = ($result[0]['last_name']);
                     $first_name = ($result[0]['first_name']);
                     $course     = ($result[0]['course']);
                     $year       = ($result[0]['year']);
                     
-                    include_once 'classes/studentsWithSubjects.php';
-                    $studs = new studentsWithSubjects($idnumber, $first_name, $last_name, $course, $year);
-                    $_SESSION['students']=$studs;
-                    $_SESSION['id_number']= $idnumber;
-                   // include 'dbcon.php';
                     $q = $pdo->query("SELECT sum(units) AS stotal FROM subjects natural join pre_enroll WHERE id_number = '$idnumber'");
                     $c = $q->rowCount();
                     if($c != 0){
@@ -128,7 +122,7 @@
                     echo ", ";
                     print_r($first_name);
                     echo"</p>";
-                    echo "<p> ID Number: ".$idnumber."</p>";                    
+                    echo "<p>ID Number: ".$idnumber."</p>";                    
                     echo"</div>";
 
                     echo "
@@ -139,18 +133,8 @@
                     print_r($year);
                     echo"</p>
                     </div>";
-                    }
-                  }
-                } else {
-                  echo "
-                  <div class='col-md-6'>
-                  <p>Name: </p>
-                  </div>
-                  <div class='col-md-6'>
-                  <p>Course and Year: </p>
-                  </div>";
-                  }           
-                  ?>
+                    }          
+                  ?>          
             </div>
             
             <br>

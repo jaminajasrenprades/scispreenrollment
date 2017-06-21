@@ -27,7 +27,7 @@
                  <span class="fa fa-bars"></span>
                  </button>
 
-            <div class="collapse navbar-collapse navbar-left borderXwidth" id="mynavbar">
+          <div class="collapse navbar-collapse navbar-left borderXwidth" id="mynavbar">
             <ul class="nav navbar-nav">
                 <li role="presentation" class="active"><a href="Pre-enrollment.php" style="font-size: 110%; font-family: Roboto">Home</a></li>
                 <li role="presentation"><a href="Checklist.php" style="font-size: 110%; font-family: Roboto">Checklist</a></li>
@@ -51,8 +51,9 @@
 
                 $user = $_SESSION["userAccount"];
                 $user_id = $user->getUserId();
-
-                echo  $_SESSION["username"];
+                
+                
+                echo  $_SESSION['username'];
                 ?>!
                  </b> 
                 </p>
@@ -94,38 +95,32 @@
                 $course     = "";
                 $year       = "";
                 
-                if($_SERVER['REQUEST_METHOD'] == 'POST') {
-                  if( isset($_POST['input']) ){
+            
                     include 'dbcon.php';
 
-                    $idnumber = check_input($_POST['input']);
+                    $idnumber = $_SESSION['username'];
                     $stmt = $pdo->query("SELECT last_name, first_name, course, year FROM students WHERE id_number = '$idnumber'");
                     $countQuery = $stmt->rowCount();
                     if ($countQuery == 0){
                         echo "Student does not Exists!";
                     } else {
                     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    $idnumber = $Idnumber;
+                    $idnumber = $idnumber;
                     $last_name  = ($result[0]['last_name']);
                     $first_name = ($result[0]['first_name']);
                     $course     = ($result[0]['course']);
                     $year       = ($result[0]['year']);
                     
-                    include_once 'classes/studentsWithSubjects.php';
-                    $studs = new studentsWithSubjects($idnumber, $first_name, $last_name, $course, $year);
-                    $_SESSION['students']=$studs;
-                    $_SESSION['id_number']= $idnumber;
-                   // include 'dbcon.php';
                     $q = $pdo->query("SELECT sum(units) AS stotal FROM subjects natural join pre_enroll WHERE id_number = '$idnumber'");
                     $c = $q->rowCount();
                     if($c != 0){
                     $cs = $q->fetchAll(PDO::FETCH_ASSOC);
-                    $totalunits = ($cs[0]['$stotal']);
+                    $totalunits = ($cs[0]['stotal']);
                     }
                     echo "
                     <div class='col-md-6'>
                     <p>Name:  ";
-                    echo($last_name);
+                    print_r($last_name);
                     echo ", ";
                     print_r($first_name);
                     echo"</p>";
@@ -140,19 +135,8 @@
                     print_r($year);
                     echo"</p>
                     </div>";
-                    }
-                  }
-                } else {
-                  echo "
-                  <div class='col-md-6'>
-                  <p>Name: </p>
-                  </div>
-                  <div class='col-md-6'>
-                  <p>Course and Year: </p>
-                  </div>";
-                  }           
-                  ?>  
-                    
+                    }          
+                  ?>          
             </div>
             
             <br>
@@ -260,13 +244,13 @@
                                 while ($rows = $res-> fetch_assoc()){
                                 $course = $rows['coursenumber'];
                                 $desctitle = $rows['destitle'];
-                                $tr = $rows['term'];
+                                $term = $rows['term'];
                                 $units = $rows['units'];
                                                                 
                                 echo "<tr>";
                                 echo "<td>".$course."</td>";
                                 echo "<td>".$desctitle."</td>";
-                                echo "<td>".$tr"</td>";
+                                echo "<td>".$term."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
                                 <button onclick=clearData(this);deleteRow(this); class='btn btn-default btn-sm'>

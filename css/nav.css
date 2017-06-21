@@ -1,0 +1,63 @@
+.nav > li > a {
+    padding: 0px;
+}
+.navbar-brand {
+	padding: 0px;
+	height: inherit;
+	font-family: 'Lato', sans-serif;
+}
+.navbar-default .navbar-brand {
+    color: #000000;
+	font-size: 34px;
+	text-transform: uppercase;
+	font-weight: 700px;
+	letter-spacing: 2px;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
+    color: #3db3ff;
+    background-color: transparent;
+    text-transform: uppercase;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #000000;
+    padding: 12px 20px;
+    text-transform: uppercase;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus{
+	color: #000000;
+}
+
+.navbar-fixed-top {
+    padding: 40px 0;
+    transition: all 0.5s;
+}
+
+.top-nav-collapse {
+    background: rgba(0,0,0,0.8);
+    padding: 25px 0;
+}
+/****/
+@media (min-width: 451px) and (max-width: 900px){
+    .section-title{
+        margin-bottom: 15px;
+    }
+}
+@media (min-width: 20px) and (max-width: 450px){
+    .navbar-toggle:hover, .navbar-toggle{
+        background-color: rgba(0, 0, 0, 0.87);
+        color: #000;
+    }
+    .navbar-toggle{
+        margin-top: 0px;
+    }
+    .navbar-default .navbar-nav > li > a{
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.87);
+        color: #000;
+    }
+    .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus{
+        background-color: rgba(0, 0, 0, 0.87);
+        color: #FFD34E;
+    }
+}
+

@@ -1,0 +1,34 @@
+/* IE8- CSS hack */
+@media \0screen\,screen\9 {
+    .gradient {
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffc1c1c1",endColorstr="#ffc1c1c1",GradientType=0);
+    }
+}
+
+.table th{
+    background-color: #a9aeb2;
+}
+
+#table-wrapper{
+    position: relative;
+}
+
+#table-scroll{
+    height: 645px;
+    overflow: auto;
+    margin-bottom: 65px;
+}
+
+#table-wrapper table{
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+

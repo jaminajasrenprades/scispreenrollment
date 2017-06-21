@@ -1,0 +1,43 @@
+<html>
+<body>
+<h2>Add/Update Person Form</h2>
+<div id = "data">
+    <form id = "person">    
+        <br><br>
+        Name: <input id = "name" name = "name" type = "text">
+        <br><br>
+        Gender: <input name = "gender" type = "radio" value = "Male"> Male
+                <input name = "gender" type = "radio" value = "Female"> Female
+        <br><br>
+        Age: &nbsp;&nbsp;&nbsp; <input id = "age" name = "age" type = "text">
+        <br><br>
+        City: &nbsp;&nbsp;&nbsp;<select id = "city" name = "city">
+                <option>Lahore</option>
+                <option>Islamabad</option>
+                <option>Karachi</option>
+            </select>
+        <br><br>
+        <input id = "button" type = "button" value = " Reset " onclick = "ResetForm()">&nbsp;&nbsp;&nbsp;
+        <input id = "button" type = "button" value = " Add " onclick = "AddData()">
+        <input id = "button" type = "button" value = " Update ">
+    </form>
+</div>
+
+<h3>List Of Persons</h3>
+<div id = "tab">
+        <table id = "list" cellspacing = "0px" cellpadding = "20px" text-align = "center">
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Gender</td>
+                    <td>Age</td>
+                    <td>City</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+
+            <tbody>
+
+            </tbody>
+        </table>
+    </html>

@@ -1,0 +1,23 @@
+.nav{
+    background-color: #ebeef4;
+}
+
+.nav a{
+    background-color: #dee1e5;
+}
+
+.navtabs {
+    background-color: black;    
+}
+
+th{
+    background-color: #c3c7cc;
+}
+
+table-hover{
+    background-color: darkgreen;
+}
+
+.error{
+color:red
+}

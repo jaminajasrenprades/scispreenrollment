@@ -11,13 +11,13 @@
       <link rel="stylesheet" href="css/bootstrap.css">
       <link rel="stylesheet" href="css/customcss.css">
       <link rel="stylesheet" href="css/nav.css">
-      <link rel="stylesheet" href="css/font-awesome.min.css"> 
+      <link rel="stylesheet" href="css/font-awesome.min.css">
+      <link rel="stylesheet" href="css/header.css">
     
       <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         
       <link rel="icon" href="images/logo.png">
-</head>
-<body>
+</head>     
  <!--nav-->
 <nav class="nav navbar-default navbar-fixed-top">
      <div class="container-fluid">
@@ -63,6 +63,7 @@
             </div>
          </div>
      </div>
+    
         <p style = "position: absolute; right:6%; margin-top:5%; font-size: 110%;">Date: <?php echo date("F d, Y"); ?></p>
 </nav>
 
@@ -365,6 +366,23 @@
                  var i = r.parentNode.parentNode.rowIndex;
                  document.getElementById("copy").deleteRow(i);
             }
+        </script>
+        
+        <script>
+            $(function() {
+              var shrinkHeader = 300;
+              $(window).scroll(function() {
+                var scroll = getCurrentScroll();
+                if (scroll >= shrinkHeader) {
+                  $(".header").addClass("shrink");
+                } else {
+                  $(".header").removeClass("shrink");
+                }
+              });
+              function getCurrentScroll() {
+                return window.pageYOffset || document.documentElement.scrollTop;
+              }
+            });
         </script>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>

@@ -5,15 +5,13 @@
 <!DOCTYPE html>
 <html class="no-js">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>Login Page</title>
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width">
-<link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="css/main.css">
-
-
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Login Page</title>
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
 
@@ -244,22 +242,24 @@
     <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
         <form name="form_login" method="post" action="">
         <fieldset>
-          <h2>Please Sign In</h2>
+            <div class="text-center">
+                <img class="logoLogin" src="images/SCIS%20Logo.png">
+                <p class="titleLogo">School of Computing and Information Sciences</p>
+                <p class="subTitle">Pre - Enrollment System</p>
+            </div>
+          
           <hr class="colorgraph">
           <div class="form-group">
-            <input name="username" type="text" id="username" class="form-control input-lg" placeholder="Username">
+            <input name="username" type="text" id="username" class="form-control input-lg" placeholder="ID Number">
           </div>
           <div class="form-group">
             <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password">
           </div>
-          <span class="button-checkbox">
-          <button type="button" class="btn" data-color="info">Remember Me</button><!-- Additional Option -->
-          <input type="checkbox" name="remember_me" id="remember_me" checked="checked" class="hidden">
           <hr class="colorgraph">
           <div class="row">
-            <div>
-              <input type="submit" name="submit" value="Login" class="btn btn-lg btn-success btn-block">
-            </div>
+                <div>
+                  <input type="submit" name="submit" value="Login" class="btn btn-success btn-block">
+                </div>
             </div>
         </fieldset>
       </form>

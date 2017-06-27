@@ -1012,7 +1012,7 @@
                     <div class="row">
                         <label class="col-sm-3 control-label">&nbsp;</label>
                         <div class="col-sm-8">
-                           <a href="Updated_Checklist.php" class="btn btn-sm btn-primary">Update Checklist</a>
+                           <a href="Updated_Checklist.php" class="btn btn-sm btn-primary" style="margin-left:80%";>Update Checklist</a>
                            <a href="Checklist.php" class="btn btn-sm btn-warning">Cancel</a>
                            <?php
                             if(isset($_POST['submit'])){
@@ -1070,7 +1070,6 @@
             } 
         </script>
     
-        // checkbox
         <script>   
             function addClassCheck(element){
                 if(element.checked){

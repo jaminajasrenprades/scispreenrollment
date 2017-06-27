@@ -77,7 +77,8 @@
             while ($rows = mysqli_fetch_array($sl)){
                 $cur = $rows['curriculum'];
             }
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' and subyear = '1'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', updated_checklist.status AS 'Status' FROM updated_checklist NATURAL JOIN checklist
+            INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students WHERE id_number = '$id' AND curriculum = '$cur' AND term = 'First'  AND subyear = '1'";
             $result = mysqli_query($con,$sql);
             $number_of_results = mysqli_num_rows($result);
             $number_of_pages = ceil($number_of_results/$results_per_page);
@@ -90,7 +91,8 @@
 
             $this_page_result = ($page - 1) * $results_per_page;
 
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' and subyear = '1'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', updated_checklist.status AS 'Status' FROM updated_checklist NATURAL JOIN checklist
+            INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students WHERE id_number = '$id' AND curriculum = '$cur' AND term = 'First'  AND subyear = '1'";
             $result = mysqli_query($con, $sql);
             ?>
             
@@ -115,6 +117,7 @@
                             $courseno = $row['Course Number'];
                             $desctitle = $row['Descriptive Title'];
                             $units =  $row['Units'];
+                            $status =  $row['Status'];
                              
                             echo "<td>".$courseno."</td>"; 
                             echo "<td>".$desctitle."</td>";
@@ -142,7 +145,8 @@
             while ($rows = mysqli_fetch_array($sl)){
                 $cur = $rows['curriculum'];
             }
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Second' and subyear = '1'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', updated_checklist.status AS 'Status' FROM updated_checklist NATURAL JOIN checklist
+            INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students WHERE id_number = '$id' AND curriculum = '$cur' AND term = 'Second'  AND subyear = '1'";
             $result = mysqli_query($con,$sql);
             $number_of_results = mysqli_num_rows($result);
             $number_of_pages = ceil($number_of_results/$results_per_page);
@@ -155,7 +159,8 @@
 
             $this_page_result = ($page - 1) * $results_per_page;
 
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Second' and subyear = '1'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', updated_checklist.status AS 'Status' FROM updated_checklist NATURAL JOIN checklist
+            INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students WHERE id_number = '$id' AND curriculum = '$cur' AND term = 'Second'  AND subyear = '1'";
             $result = mysqli_query($con, $sql);
             ?>
             
@@ -180,6 +185,7 @@
                             $courseno = $row['Course Number'];
                             $desctitle = $row['Descriptive Title'];
                             $units =  $row['Units'];
+                            $status =  $row['Status'];
                              
                             echo "<td>".$courseno."</td>"; 
                             echo "<td>".$desctitle."</td>";
@@ -208,7 +214,8 @@
             while ($rows = mysqli_fetch_array($sl)){
                 $cur = $rows['curriculum'];
             }
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur'  and term = 'Short' AND subyear = '1'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', updated_checklist.status AS 'Status' FROM updated_checklist NATURAL JOIN checklist
+            INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students WHERE id_number = '$id' AND curriculum = '$cur' AND term = 'Short'  AND subyear = '1'";
             $result = mysqli_query($con,$sql);
             $number_of_results = mysqli_num_rows($result);
             $number_of_pages = ceil($number_of_results/$results_per_page);
@@ -221,7 +228,8 @@
 
             $this_page_result = ($page - 1) * $results_per_page;
 
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Short' AND subyear = '1'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', updated_checklist.status AS 'Status' FROM updated_checklist NATURAL JOIN checklist
+            INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students WHERE id_number = '$id' AND curriculum = '$cur' AND term = 'Short'  AND subyear = '1'";
             $result = mysqli_query($con, $sql);
             ?>
             
@@ -233,8 +241,8 @@
                            <th>Course Number</th>
                            <th>Descriptive Title</th>
                            <th>Units</th>
-                           <th>Done</th>
-                           <th>Currently Enrolled</th>
+                           <th></th>
+                           <th></th>
                         </tr>
 
                      <?php
@@ -246,24 +254,12 @@
                             $courseno = $row['Course Number'];
                             $desctitle = $row['Descriptive Title'];
                             $units =  $row['Units'];
+                            $status =  $row['Status'];
                              
                             echo "<td>".$courseno."</td>"; 
                             echo "<td>".$desctitle."</td>";
                             echo "<td>".$units."</td>";
-                            echo "<td>
-                               <form action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='cb[1][]' id='cb1' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb1'>Done</label>
-                               </center>
-                               </form></td>"; 
-                            echo "<td>
-                               <form name action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='cb[2][]' id='cb2' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb2'>Currently Enrolled</label>
-                               </center>
-                               </form></td>";
+                            echo "<td>".$status."</td>";
                             echo "</tr>";
                            }
                         ?>
@@ -287,7 +283,8 @@
             while ($rows = mysqli_fetch_array($sl)){
                 $cur = $rows['curriculum'];
             }
-            $sql = "SELECT DISTINCT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' AND subyear = '2'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', updated_checklist.status AS 'Status' FROM updated_checklist NATURAL JOIN checklist
+            INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students WHERE id_number = '$id' AND curriculum = '$cur' AND term = 'First'  AND subyear = '2'";
             $result = mysqli_query($con,$sql);
             $number_of_results = mysqli_num_rows($result);
             $number_of_pages = ceil($number_of_results/$results_per_page);
@@ -300,7 +297,8 @@
 
             $this_page_result = ($page - 1) * $results_per_page;
 
-            $sql = "SELECT DISTINCT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' AND subyear = '2'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', updated_checklist.status AS 'Status' FROM updated_checklist NATURAL JOIN checklist
+            INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students WHERE id_number = '$id' AND curriculum = '$cur' AND term = 'First'  AND subyear = '2'";
             $result = mysqli_query($con, $sql);
             ?>
             
@@ -312,8 +310,8 @@
                            <th>Course Number</th>
                            <th>Descriptive Title</th>
                            <th>Units</th>
-                           <th>Done</th>
-                           <th>Currently Enrolled</th>
+                           <th></th>
+                           <th></th>
                         </tr>
 
                      <?php
@@ -325,24 +323,12 @@
                             $courseno = $row['Course Number'];
                             $desctitle = $row['Descriptive Title'];
                             $units =  $row['Units'];
+                            $status =  $row['Status'];
                              
                             echo "<td>".$courseno."</td>"; 
                             echo "<td>".$desctitle."</td>";
                             echo "<td>".$units."</td>";
-                            echo "<td>
-                               <form action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='cb[1][]' id='cb1' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb1'>Done</label>
-                               </center>
-                               </form></td>"; 
-                            echo "<td>
-                               <form name action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='cb[2][]' id='cb2' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb2'>Currently Enrolled</label>
-                               </center>
-                               </form></td>";
+                            echo "<td>".$status."</td>";
                             echo "</tr>";
                            }
                         ?>
@@ -366,7 +352,8 @@
             while ($rows = mysqli_fetch_array($sl)){
                 $cur = $rows['curriculum'];
             }
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Second' AND subyear = '2'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', updated_checklist.status AS 'Status' FROM updated_checklist NATURAL JOIN checklist
+            INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students WHERE id_number = '$id' AND curriculum = '$cur' AND term = 'Second'  AND subyear = '2'";
             $result = mysqli_query($con,$sql);
             $number_of_results = mysqli_num_rows($result);
             $number_of_pages = ceil($number_of_results/$results_per_page);
@@ -379,7 +366,8 @@
 
             $this_page_result = ($page - 1) * $results_per_page;
 
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Second' AND subyear = '2'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', updated_checklist.status AS 'Status' FROM updated_checklist NATURAL JOIN checklist
+            INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students WHERE id_number = '$id' AND curriculum = '$cur' AND term = 'Second'  AND subyear = '2'";
             $result = mysqli_query($con, $sql);
             ?>
             
@@ -391,8 +379,8 @@
                            <th>Course Number</th>
                            <th>Descriptive Title</th>
                            <th>Units</th>
-                           <th>Done</th>
-                           <th>Currently Enrolled</th>
+                           <th></th>
+                           <th></th>
                         </tr>
 
                      <?php
@@ -404,24 +392,12 @@
                             $courseno = $row['Course Number'];
                             $desctitle = $row['Descriptive Title'];
                             $units =  $row['Units'];
-                             
+                            $status =  $row['Status']; 
+                                
                             echo "<td>".$courseno."</td>"; 
                             echo "<td>".$desctitle."</td>";
                             echo "<td>".$units."</td>";
-                            echo "<td>
-                               <form action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='cb[1][]' id='cb1' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb1'>Done</label>
-                               </center>
-                               </form></td>"; 
-                            echo "<td>
-                               <form name action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='cb[2][]' id='cb2' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb2'>Currently Enrolled</label>
-                               </center>
-                               </form></td>";
+                            echo "<td>".$status."</td>";
                             echo "</tr>";
                            }
                         ?>
@@ -445,7 +421,8 @@
             while ($rows = mysqli_fetch_array($sl)){
                 $cur = $rows['curriculum'];
             }
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Short' AND subyear = '2'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', updated_checklist.status AS 'Status' FROM updated_checklist NATURAL JOIN checklist
+            INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students WHERE id_number = '$id' AND curriculum = '$cur' AND term = 'Short'  AND subyear = '2'";
             $result = mysqli_query($con,$sql);
             $number_of_results = mysqli_num_rows($result);
             $number_of_pages = ceil($number_of_results/$results_per_page);
@@ -458,7 +435,8 @@
 
             $this_page_result = ($page - 1) * $results_per_page;
 
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Short' AND subyear = '2'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', updated_checklist.status AS 'Status' FROM updated_checklist NATURAL JOIN checklist
+            INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students WHERE id_number = '$id' AND curriculum = '$cur' AND term = 'Short'  AND subyear = '2'";
             $result = mysqli_query($con, $sql);
             ?>
             
@@ -470,8 +448,8 @@
                            <th>Course Number</th>
                            <th>Descriptive Title</th>
                            <th>Units</th>
-                           <th>Done</th>
-                           <th>Currently Enrolled</th>
+                           <th></th>
+                           <th></th>
                         </tr>
 
                      <?php
@@ -483,24 +461,12 @@
                             $courseno = $row['Course Number'];
                             $desctitle = $row['Descriptive Title'];
                             $units =  $row['Units'];
+                            $status =  $row['Status'];
                              
                             echo "<td>".$courseno."</td>"; 
                             echo "<td>".$desctitle."</td>";
                             echo "<td>".$units."</td>";
-                            echo "<td>
-                               <form action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='cb[1][]' id='cb1' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb1'>Done</label>
-                               </center>
-                               </form></td>"; 
-                            echo "<td>
-                               <form name action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='cb[2][]' id='cb2' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb2'>Currently Enrolled</label>
-                               </center>
-                               </form></td>";
+                            echo "<td>".$status."</td>";
                             echo "</tr>";
                            }
                         ?>
@@ -524,7 +490,8 @@
             while ($rows = mysqli_fetch_array($sl)){
                 $cur = $rows['curriculum'];
             }
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' AND subyear = '3'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', updated_checklist.status AS 'Status' FROM updated_checklist NATURAL JOIN checklist
+            INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students WHERE id_number = '$id' AND curriculum = '$cur' AND term = 'First'  AND subyear = '3'";
             $result = mysqli_query($con,$sql);
             $number_of_results = mysqli_num_rows($result);
             $number_of_pages = ceil($number_of_results/$results_per_page);
@@ -537,7 +504,8 @@
 
             $this_page_result = ($page - 1) * $results_per_page;
 
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' AND subyear = '3'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', updated_checklist.status AS 'Status' FROM updated_checklist NATURAL JOIN checklist
+            INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students WHERE id_number = '$id' AND curriculum = '$cur' AND term = 'First'  AND subyear = '3'";
             $result = mysqli_query($con, $sql);
             ?>
             
@@ -549,8 +517,8 @@
                            <th>Course Number</th>
                            <th>Descriptive Title</th>
                            <th>Units</th>
-                           <th>Done</th>
-                           <th>Currently Enrolled</th>
+                           <th></th>
+                           <th></th>
                         </tr>
 
                      <?php
@@ -562,24 +530,12 @@
                             $courseno = $row['Course Number'];
                             $desctitle = $row['Descriptive Title'];
                             $units =  $row['Units'];
+                            $status =  $row['Status'];
                              
                             echo "<td>".$courseno."</td>"; 
                             echo "<td>".$desctitle."</td>";
                             echo "<td>".$units."</td>";
-                             echo "<td>
-                               <form action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='cb[1][]' id='cb1' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb1'>Done</label>
-                               </center>
-                               </form></td>"; 
-                            echo "<td>
-                               <form name action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='cb[2][]' id='cb2' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb2'>Currently Enrolled</label>
-                               </center>
-                               </form></td>";
+                            echo "<td>".$status."</td>";
                             echo "</tr>";
                            }
                         ?>
@@ -603,7 +559,8 @@
             while ($rows = mysqli_fetch_array($sl)){
                 $cur = $rows['curriculum'];
             }
-            $sql = "SELECT DISTINCT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Second' AND subyear = '3'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', updated_checklist.status AS 'Status' FROM updated_checklist NATURAL JOIN checklist
+            INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students WHERE id_number = '$id' AND curriculum = '$cur' AND term = 'Second'  AND subyear = '3'";
             $result = mysqli_query($con,$sql);
             $number_of_results = mysqli_num_rows($result);
             $number_of_pages = ceil($number_of_results/$results_per_page);
@@ -616,7 +573,8 @@
 
             $this_page_result = ($page - 1) * $results_per_page;
 
-            $sql = "SELECT DISTINCT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Second' AND subyear = '3'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', updated_checklist.status AS 'Status' FROM updated_checklist NATURAL JOIN checklist
+            INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students WHERE id_number = '$id' AND curriculum = '$cur' AND term = 'Second'  AND subyear = '3'";
             $result = mysqli_query($con, $sql);
             ?>
             
@@ -628,8 +586,8 @@
                            <th>Course Number</th>
                            <th>Descriptive Title</th>
                            <th>Units</th>
-                           <th>Done</th>
-                           <th>Currently Enrolled</th>
+                           <th></th>
+                           <th></th>
                         </tr>
 
                      <?php
@@ -641,24 +599,12 @@
                             $courseno = $row['Course Number'];
                             $desctitle = $row['Descriptive Title'];
                             $units =  $row['Units'];
+                            $status =  $row['Status'];
                              
                             echo "<td>".$courseno."</td>"; 
                             echo "<td>".$desctitle."</td>";
                             echo "<td>".$units."</td>";
-                            echo "<td>
-                               <form action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='cb[1][]' id='cb1' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb1'>Done</label>
-                               </center>
-                               </form></td>"; 
-                            echo "<td>
-                               <form name action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='cb[2][]' id='cb2' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb2'>Currently Enrolled</label>
-                               </center>
-                               </form></td>";
+                            echo "<td>".$status."</td>";
                             echo "</tr>";
                            }
                         ?>
@@ -682,7 +628,8 @@
             while ($rows = mysqli_fetch_array($sl)){
                 $cur = $rows['curriculum'];
             }
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Short' AND subyear = '3'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', updated_checklist.status AS 'Status' FROM updated_checklist NATURAL JOIN checklist
+            INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students WHERE id_number = '$id' AND curriculum = '$cur' AND term = 'Short'  AND subyear = '3'";
             $result = mysqli_query($con,$sql);
             $number_of_results = mysqli_num_rows($result);
             $number_of_pages = ceil($number_of_results/$results_per_page);
@@ -695,7 +642,8 @@
 
             $this_page_result = ($page - 1) * $results_per_page;
 
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Short' AND subyear = '3'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', updated_checklist.status AS 'Status' FROM updated_checklist NATURAL JOIN checklist
+            INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students WHERE id_number = '$id' AND curriculum = '$cur' AND term = 'Short'  AND subyear = '3'";
             $result = mysqli_query($con, $sql);
             ?>
             
@@ -707,8 +655,8 @@
                            <th>Course Number</th>
                            <th>Descriptive Title</th>
                            <th>Units</th>
-                           <th>Done</th>
-                           <th>Currently Enrolled</th>
+                           <th></th>
+                           <th></th>
                         </tr>
 
                      <?php
@@ -720,24 +668,12 @@
                             $courseno = $row['Course Number'];
                             $desctitle = $row['Descriptive Title'];
                             $units =  $row['Units'];
+                            $status =  $row['Status'];
                              
                             echo "<td>".$courseno."</td>"; 
                             echo "<td>".$desctitle."</td>";
                             echo "<td>".$units."</td>";
-                            echo "<td>
-                               <form action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='cb[1][]' id='cb1' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb1'>Done</label>
-                               </center>
-                               </form></td>"; 
-                            echo "<td>
-                               <form name action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='cb[2][]' id='cb2' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb2'>Currently Enrolled</label>
-                               </center>
-                               </form></td>";
+                            echo "<td>".$status."</td>";
                             echo "</tr>";
                            }
                         ?>
@@ -761,7 +697,8 @@
             while ($rows = mysqli_fetch_array($sl)){
                 $cur = $rows['curriculum'];
             }
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' AND subyear = '4'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', updated_checklist.status AS 'Status' FROM updated_checklist NATURAL JOIN checklist
+            INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students WHERE id_number = '$id' AND curriculum = '$cur' AND term = 'First'  AND subyear = '4'";
             $result = mysqli_query($con,$sql);
             $number_of_results = mysqli_num_rows($result);
             $number_of_pages = ceil($number_of_results/$results_per_page);
@@ -774,7 +711,8 @@
 
             $this_page_result = ($page - 1) * $results_per_page;
 
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' AND subyear = '4'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', updated_checklist.status AS 'Status' FROM updated_checklist NATURAL JOIN checklist
+            INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students WHERE id_number = '$id' AND curriculum = '$cur' AND term = 'First'  AND subyear = '4'";
             $result = mysqli_query($con, $sql);
             ?>
             
@@ -786,8 +724,8 @@
                            <th>Course Number</th>
                            <th>Descriptive Title</th>
                            <th>Units</th>
-                           <th>Done</th>
-                           <th>Currently Enrolled</th>
+                           <th></th>
+                           <th></th>
                         </tr>
 
                      <?php
@@ -799,24 +737,12 @@
                             $courseno = $row['Course Number'];
                             $desctitle = $row['Descriptive Title'];
                             $units =  $row['Units'];
+                            $status =  $row['Status'];
                              
                             echo "<td>".$courseno."</td>"; 
                             echo "<td>".$desctitle."</td>";
                             echo "<td>".$units."</td>";
-                            echo "<td>
-                               <form action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='cb[1][]' id='cb1' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb1'>Done</label>
-                               </center>
-                               </form></td>"; 
-                            echo "<td>
-                               <form name action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='cb[2][]' id='cb2' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb2'>Currently Enrolled</label>
-                               </center>
-                               </form></td>";
+                            echo "<td>".$status."</td>";
                             echo "</tr>";
                            }
                         ?>
@@ -840,7 +766,8 @@
             while ($rows = mysqli_fetch_array($sl)){
                 $cur = $rows['curriculum'];
             }
-            $sql = "SELECT DISTINCT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Second' AND subyear = '4'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', updated_checklist.status AS 'Status' FROM updated_checklist NATURAL JOIN checklist
+            INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students WHERE id_number = '$id' AND curriculum = '$cur' AND term = 'Second'  AND subyear = '4'";
             $result = mysqli_query($con,$sql);
             $number_of_results = mysqli_num_rows($result);
             $number_of_pages = ceil($number_of_results/$results_per_page);
@@ -853,7 +780,8 @@
 
             $this_page_result = ($page - 1) * $results_per_page;
 
-            $sql = "SELECT DISTINCT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Second' AND subyear = '4'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', updated_checklist.status AS 'Status' FROM updated_checklist NATURAL JOIN checklist
+            INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students WHERE id_number = '$id' AND curriculum = '$cur' AND term = 'Second'  AND subyear = '4'";
             $result = mysqli_query($con, $sql);
             ?>
 
@@ -864,8 +792,8 @@
                            <th>Course Number</th>
                            <th>Descriptive Title</th>
                            <th>Units</th>
-                           <th>Done</th>
-                           <th>Currently Enrolled</th>
+                           <th></th>
+                           <th></th>
                         </tr>
 
                      <?php
@@ -877,24 +805,12 @@
                             $courseno = $row['Course Number'];
                             $desctitle = $row['Descriptive Title'];
                             $units =  $row['Units'];
+                            $status =  $row['Status'];
                              
                             echo "<td>".$courseno."</td>"; 
                             echo "<td>".$desctitle."</td>";
                             echo "<td>".$units."</td>";
-                            echo "<td>
-                               <form action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='cb[1][]' id='cb1' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb1'>Done</label>
-                               </center>
-                               </form></td>"; 
-                            echo "<td>
-                               <form name action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='cb[2][]' id='cb2' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb2'>Currently Enrolled</label>
-                               </center>
-                               </form></td>";
+                            echo "<td>".$status."</td>";
                             echo "</tr>";
                            }
                         ?>
@@ -918,7 +834,8 @@
             while ($rows = mysqli_fetch_array($sl)){
                 $cur = $rows['curriculum'];
             }
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = '0' AND subyear = '0'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', updated_checklist.status AS 'Status' FROM updated_checklist NATURAL JOIN checklist
+            INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students WHERE id_number = '$id' AND curriculum = '$cur' AND term = 'Short'  AND subyear = '4'";
             $result = mysqli_query($con,$sql);
             $number_of_results = mysqli_num_rows($result);
             $number_of_pages = ceil($number_of_results/$results_per_page);
@@ -931,7 +848,8 @@
 
             $this_page_result = ($page - 1) * $results_per_page;
 
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = '0' AND subyear = '0'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', updated_checklist.status AS 'Status' FROM updated_checklist NATURAL JOIN checklist
+            INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students WHERE id_number = '$id' AND curriculum = '$cur' AND term = 'Short'  AND subyear = '4'";
             $result = mysqli_query($con, $sql);
             ?>
             
@@ -943,8 +861,8 @@
                            <th>Course Number</th>
                            <th>Descriptive Title</th>
                            <th>Units</th>
-                           <th>Done</th>
-                           <th>Currently Enrolled</th>
+                           <th></th>
+                           <th></th>
                         </tr>
 
                      <?php
@@ -956,21 +874,12 @@
                             $courseno = $row['Course Number'];
                             $desctitle = $row['Descriptive Title'];
                             $units =  $row['Units'];
+                            $status =  $row['Status'];
                              
                             echo "<td>".$courseno."</td>"; 
                             echo "<td>".$desctitle."</td>";
                             echo "<td>".$units."</td>";
-                            echo "<td>
-                               <form action='Updated_Checklist.php' method='POST'>
-                               <center><input type='checkbox' name='cb' id='cb1' value='$courseno'/>
-                               <label for='cb1'>Done</label></center>
-                               </form></td>"; 
-                            echo "<td>
-                               <form action='Updated_Checklist.php' method='POST'>
-                               <center><input type='checkbox' name='cb' id='cb2' value='$courseno'/>
-                               <label for='cb2'>Currently Enrolled</label></center>
-                               </form></td>";
-                            echo "</tr>";
+                            echo "<td>".$status."</td>";
                            }
                         ?>
                         
@@ -985,7 +894,7 @@
                     <div class="row">
                         <label class="col-sm-3 control-label">&nbsp;</label>
                         <div class="col-sm-8">
-                            <input type="submit" name="add" class="btn btn-sm btn-primary" value="Update Checklist"><a href="Updated_Checklist.php"></a>
+                            <input type="submit" name="add" class="btn btn-sm btn-primary" value="Update Checklist" style="margin-left:80%";><a href="Updated_Checklist.php"></a>
                            <a href="Checklist.php" class="btn btn-sm btn-warning">Cancel</a>
                            <?php
                             if(isset($_POST['submit'])){
@@ -1043,7 +952,6 @@
             } 
         </script>
     
-        // checkbox
         <script>   
             function addClassCheck(element){
                 if(element.checked){

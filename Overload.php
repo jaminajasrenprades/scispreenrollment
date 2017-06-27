@@ -74,8 +74,7 @@
                         <option value="First"><a href="#">First Term</a></option>
                         <option value="Second"><a href="#">Second Term</a></option>
                         <option value="Short"><a href="#">Short Term</a></option>
-                    </select>
-                    
+                    </select>     
                 </div>
                 <div class="col-md-2" style="margin-top:10%">
                     <input class = 'btn btn-default' type='submit' name = 'submit' value='Apply'></input>

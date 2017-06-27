@@ -76,7 +76,7 @@
                         <option value="Short"><a href="#">Short Term</a></option>
                     </select>     
                 </div>
-                <div class="col-md-2" style="margin-top:10%">
+                <div class="col-md-2" style="margin-top:10%; left:30%;">
                     <input class = 'btn btn-default' type='submit' name = 'submit' value='Apply'></input>
                     <button class="btn btn-default" type="button" value="reset"><a href = "Pre-enrollment.php">Reset</a></button>
                 </div>

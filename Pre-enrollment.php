@@ -152,8 +152,8 @@
                     </form>
                 </div>
                 <div class="col-md-2">
-                    <p>Total Units: <b>
-                        <?php echo $totalunits;?></b></p>
+                    <h4><p>Total Units: <b>
+                        <?php echo $totalunits;?></b></p></h4>
                 </div>
             </div>
             <br>

@@ -150,8 +150,8 @@
                     </form>
                 </div>
                   <div class="col-md-2" style="left: 40%">
-                    <p>Total Units: <b>
-                        <?php echo $totalunits;?></b></p>
+                    <h4><p>Total Units: <b>
+                        <?php echo $totalunits;?></b></p></h4>
                 </div>
                  <div class="col-md-3" style="left: -16.5%">
                     <h4><p>Added Subjects <b>

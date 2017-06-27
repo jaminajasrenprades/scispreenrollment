@@ -154,7 +154,7 @@
                         <?php echo $totalunits;?></b></p>
                 </div>
                  <div class="col-md-3" style="left: -16.5%">
-                    <h4><p>Offered Subjects <b>
+                    <h4><p>Added Subjects <b>
                         </b></p></h4>
                 </div>
             </div>

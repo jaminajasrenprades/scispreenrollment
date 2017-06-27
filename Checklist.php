@@ -53,13 +53,13 @@
             ?>!
              </b>
           </p>
+          <p style = "position: absolute; right:6%; margin-top:3%; font-size: 110%;">Date: <?php echo date("F d, Y"); ?></p>
             <a href="logout.php" title="Logout" class="btn btn-default btn" onclick="return confirm('Are you sure you want to log out?');" style= "position: absolute; right:2%; top:.5%;"><span class="fa fa-sign-out" aria-hidden="true"></span></a>
           </ul>
           </div>
        </div>
       </div>
     </div>
-        <p style = "position: absolute; right:6%; margin-top:7%; font-size: 110%;">Date: <?php echo date("F d, Y"); ?></p>
 </nav>
 <!--/ nav-->
         
@@ -181,8 +181,8 @@
                            <th>Course Number</th>
                            <th>Descriptive Title</th>
                            <th>Units</th>
-                           <th>Done</th>
-                           <th>Currently Enrolled</th>
+                           <th></th>
+                           <th></th>
                         </tr>
 
                      <?php
@@ -260,8 +260,8 @@
                            <th>Course Number</th>
                            <th>Descriptive Title</th>
                            <th>Units</th>
-                           <th>Done</th>
-                           <th>Currently Enrolled</th>
+                           <th></th>
+                           <th></th>
                         </tr>
 
                      <?php
@@ -339,8 +339,8 @@
                            <th>Course Number</th>
                            <th>Descriptive Title</th>
                            <th>Units</th>
-                           <th>Done</th>
-                           <th>Currently Enrolled</th>
+                           <th></th>
+                           <th></th>
                         </tr>
 
                      <?php
@@ -418,8 +418,8 @@
                            <th>Course Number</th>
                            <th>Descriptive Title</th>
                            <th>Units</th>
-                           <th>Done</th>
-                           <th>Currently Enrolled</th>
+                           <th></th>
+                           <th></th>
                         </tr>
 
                      <?php
@@ -497,8 +497,8 @@
                            <th>Course Number</th>
                            <th>Descriptive Title</th>
                            <th>Units</th>
-                           <th>Done</th>
-                           <th>Currently Enrolled</th>
+                           <th></th>
+                           <th></th>
                         </tr>
 
                      <?php
@@ -576,8 +576,8 @@
                            <th>Course Number</th>
                            <th>Descriptive Title</th>
                            <th>Units</th>
-                           <th>Done</th>
-                           <th>Currently Enrolled</th>
+                           <th></th>
+                           <th></th>
                         </tr>
 
                      <?php
@@ -655,8 +655,8 @@
                            <th>Course Number</th>
                            <th>Descriptive Title</th>
                            <th>Units</th>
-                           <th>Done</th>
-                           <th>Currently Enrolled</th>
+                           <th></th>
+                           <th></th>
                         </tr>
 
                      <?php
@@ -734,8 +734,8 @@
                            <th>Course Number</th>
                            <th>Descriptive Title</th>
                            <th>Units</th>
-                           <th>Done</th>
-                           <th>Currently Enrolled</th>
+                           <th></th>
+                           <th></th>
                         </tr>
 
                      <?php
@@ -813,8 +813,8 @@
                            <th>Course Number</th>
                            <th>Descriptive Title</th>
                            <th>Units</th>
-                           <th>Done</th>
-                           <th>Currently Enrolled</th>
+                           <th></th>
+                           <th></th>
                         </tr>
 
                      <?php
@@ -891,8 +891,8 @@
                            <th>Course Number</th>
                            <th>Descriptive Title</th>
                            <th>Units</th>
-                           <th>Done</th>
-                           <th>Currently Enrolled</th>
+                           <th></th>
+                           <th></th>
                         </tr>
 
                      <?php
@@ -970,8 +970,8 @@
                            <th>Course Number</th>
                            <th>Descriptive Title</th>
                            <th>Units</th>
-                           <th>Done</th>
-                           <th>Currently Enrolled</th>
+                           <th></th>
+                           <th></th>
                         </tr>
 
                      <?php
@@ -1012,7 +1012,7 @@
                     <div class="row">
                         <label class="col-sm-3 control-label">&nbsp;</label>
                         <div class="col-sm-8">
-                            <input type="submit" name="add" class="btn btn-sm btn-primary" value="Update Checklist">
+                           <a href="Updated_Checklist.php" class="btn btn-sm btn-primary">Update Checklist</a>
                            <a href="Checklist.php" class="btn btn-sm btn-warning">Cancel</a>
                            <?php
                             if(isset($_POST['submit'])){

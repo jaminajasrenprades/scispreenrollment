@@ -55,13 +55,13 @@
                     ?>!
                     </b>
                 </p>
+                <p style = "position: absolute; right:6%; margin-top:3%; font-size: 110%;">Date: <?php echo date("F d, Y"); ?></p>
                 <a href="logout.php" title="Logout" class="btn btn-default btn" onclick="return confirm('Are you sure you want to log out?');" style= "position: absolute; right:2%; top:.5%;"><span class="fa fa-sign-out" aria-hidden="true"></span></a>
             </ul>
             </div>
             </div>
          </div>
      </div>
-        <p style = "position: absolute; right:6%; margin-top:5%; font-size: 110%;">Date: <?php echo date("F d, Y"); ?></p>
 </nav>
     
 <body>

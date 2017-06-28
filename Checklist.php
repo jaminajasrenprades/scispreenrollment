@@ -1022,6 +1022,7 @@
                             mysqli_select_db($con, 'pre_enrollment');   
                             
                             if(isset($_POST['update'])){
+                                $query="INSERT INTO updated_checcklist (checklistID) VALUES ('" . $checkBox . "')"; 
                             if(!empty($_POST['checkbox'])){
                                 foreach($_POST['checkbox'] as $checked){
                                     echo $checked."<br>";

@@ -78,7 +78,7 @@
                     
                 </div>
                 <div class="col-md-2" style="margin-top:10%; left:30%;">
-                    <input class = 'btn btn-default' type='submit' name = 'submit' value='Apply'></input>
+                    <input class = 'btn btn-default' type='submit' name = 'submit' value='Apply'/>
                     <button class="btn btn-default" type="button" value="reset"><a href = "Pre-enrollment.php">Reset</a></button>
                 </div>
                 </form>
@@ -267,6 +267,7 @@
                   </div>
               </div>
         </div>
+    </div>
                 
             <?php
             $id = $_SESSION['username'];
@@ -276,7 +277,7 @@
             $results_per_page = 40;
             
             $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units' FROM subjects  NATURAL JOIN pre_enroll NATURAL JOIN petitions  NATURAL JOIN students NATURAL JOIN curriculum_checklist NATURAL JOIN 
-            checklist NATURAL JOIN updated_checklist WHERE id_number = '$id'; ";
+            checklist NATURAL JOIN updated_checklist WHERE id_number = '$id'";
             $result = mysqli_query($con,$sql);
             $number_of_results = mysqli_num_rows($result);
             $number_of_pages = ceil($number_of_results/$results_per_page);
@@ -289,21 +290,19 @@
 
             $this_page_result = ($page - 1) * $results_per_page;
 
-            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units' FROM subjects  NATURAL JOIN pre_enroll NATURAL JOIN petitions  NATURAL JOIN students NATURAL JOIN curriculum_checklist NATURAL JOIN 
-            checklist NATURAL JOIN updated_checklist WHERE id_number = '$id' LIMIT $this_page_result, $results_per_page";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units' FROM subjects  NATURAL JOIN pre_enroll NATURAL JOIN petitions NATURAL JOIN students NATURAL JOIN curriculum_checklist NATURAL JOIN checklist NATURAL JOIN updated_checklist WHERE id_number = '$id' LIMIT $this_page_result, $results_per_page";
             if(isset($_POST['submit'])){
                 $selected_val = $_POST['sort'];
                 echo $selected_val;
-                $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units' FROM subjects  NATURAL JOIN pre_enroll NATURAL JOIN petitions  NATURAL JOIN students NATURAL JOIN curriculum_checklist NATURAL JOIN checklist NATURAL JOIN updated_checklist WHERE id_number = '$id' LIMIT $this_page_result, $results_per_page";
+                $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units' FROM subjects  NATURAL JOIN pre_enroll NATURAL JOIN petitions NATURAL JOIN students NATURAL JOIN curriculum_checklist NATURAL JOIN checklist NATURAL JOIN updated_checklist WHERE id_number = '$id' LIMIT $this_page_result, $results_per_page";
             } else {
-            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units' FROM subjects  NATURAL JOIN pre_enroll NATURAL JOIN petitions  NATURAL JOIN students NATURAL JOIN curriculum_checklist NATURAL JOIN 
-            checklist NATURAL JOIN updated_checklist WHERE id_number = '$id' LIMIT $this_page_result, $results_per_page";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units' FROM subjects  NATURAL JOIN pre_enroll NATURAL JOIN petitions NATURAL JOIN students NATURAL JOIN curriculum_checklist NATURAL JOIN checklist NATURAL JOIN updated_checklist WHERE id_number = '$id' LIMIT $this_page_result, $results_per_page";
             }
             $result = mysqli_query($con, $sql);
             ?>
 
         <div class="col-md-offset-11">
-        <button class="btn btn-primary" type="submit" value="Enter" name="Enter">Apply</button>   
+        <button class="btn btn-primary" type="submit" value="Enter" name="Enter">Apply</button> 
         <br>
         </div>
         

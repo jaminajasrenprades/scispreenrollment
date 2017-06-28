@@ -74,13 +74,13 @@
                         <option value="First"><a href="#">First Term</a></option>
                         <option value="Second"><a href="#">Second Term</a></option>
                         <option value="Short"><a href="#">Short Term</a></option>
-                    </select>     
+                    </select>
                 </div>
                 <div class="col-md-2" style="margin-top:10%; left:30%;">
-                    <input class = 'btn btn-default' type='submit' name = 'submit' value='Apply'></input>
+                    <input class = 'btn btn-default' type='submit' name = 'submit' value='Apply'/>
                     <button class="btn btn-default" type="button" value="reset"><a href = "Pre-enrollment.php">Reset</a></button>
                 </div>
-                </form>
+                    </form>
          </div>
     
          <div class="row">
@@ -194,6 +194,7 @@
                           <?php
                           $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                           foreach ($results as $row) {
+                              $course = $row['Course No.'];
                                   echo "<tr>";
                                   echo "<td><center>".$row['Course No.']."</center></td>";
                                   echo "<td>".$row['Descriptive Title']."</td>";
@@ -207,9 +208,13 @@
                                   echo "<input type='hidden' name='numberofstudents' value='".$row['Number of Students']."'/>";
                                   echo "
                                   <td>
+                                  
                                       <button class='btn btn-default btn-sm' onclick='addDataToLocalStorage(this)'>
+                                      
                                       <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
                                       </button>
+                                      <a href='Overload.php?courseno=$course'>
+                                      </a>
                                   </td>";
                                   echo "</tr>";
                           }
@@ -230,42 +235,43 @@
         						    </tr>
                            <?php 
                               $con =  new mysqli('localhost', 'root', '', 'pre_enrollment') or die ('Cannot connect to database');
-                              //$Idnumber = check_input($_POST['input']);
-                              if (isset($_SESSION['id_number']) && $_SESSION['students'] == true){
-                                 $studes = $_SESSION['students'];
-                                 $idnum = $_SESSION['id_number'];
-                                 $quer = "select * from pre_enroll natural join students natural join subjects where id_number = '$id'";
+                            //$studes = $_SESSION['students'];
+                                 $idnum = $_SESSION['username'];
+                                 $quer = "select * from overloading natural join students natural join subjects where id_number = '$idnum'";
                                  $res = mysqli_query($con, $quer);
                                  $countRes = mysqli_num_rows($res);
                                                              
                               if ($countRes != 0){
                                 while ($rows = $res-> fetch_assoc()){
+                             //   $courses = $_GET['coursenumber'];
                                 $course = $rows['coursenumber'];
                                 $desctitle = $rows['destitle'];
                                 $tr = $rows['term'];
                                 $units = $rows['units'];
-                                                                
                                 echo "<tr>";
                                 echo "<td><center>".$course."</center></td>";
                                 echo "<td>".$desctitle."</center></td>";
-                                echo "<td><center>".$term."</center></td>";
+                                echo "<td><center>".$tr."</center></td>";
                                 echo "<td><center>".$units."</center></td>";
                                 echo "<td>
+                                
                                 <button onclick=clearData(this);deleteRow(this); class='btn btn-default btn-sm'>
                                 <span class='glyphicon glyphicon-remove' aria-hidden='true'></span>
                                 </button>
+                                
                                 </td>"; //here delete rows at the database
                                 echo "</tr>";
                                 }
                                 }
                                 else if ($countRes == 0){
                                 }
-                                }
+                                
                             ?>
   	                  </table>
                   </div>
               </div>
         </div>
+    </div>
                 
             <?php
             $id = $_SESSION['username'];
@@ -302,8 +308,34 @@
             ?>
 
         <div class="col-md-offset-11">
-        <button class="btn btn-primary" type="submit" value="Enter" name="Enter">Apply</button>   
-        <br>
+        <form method="post" action="#">
+            <button class="btn btn-primary" type="submit" value="Enter" name="Enter">Apply</button> 
+            </form>
+            <?php
+                if(isset($_POST['Enter'])){
+                     $idnumber = $_SESSION['username'];
+                     $con = mysqli_connect('localhost', 'root', '');
+                     mysqli_select_db($con, 'pre_enrollment');
+                    echo $idnumber;
+                     $status="Pending";
+
+                     $query1="SELECT * FROM students where id_number='$idnumber'";
+                     $query2="SELECT subjectID FROM subjects where coursenumber='$courseno'";
+                     
+                     $students = $_SESSION['id_number'];
+                     $subjects = $_POST['subjectID'];
+                    
+                     $query = "INSERT INTO overloading (subjectID, id_number, status)
+                     VALUES ('$query2', '$students', '$status')";
+                    
+                    if (mysqli_query($con, $query)) {
+                         echo "Your Petitioned Subject/s has been submitted.";
+                    } else {
+                        echo "Error: " . $query . "<br>" . mysqli_error($con);
+                    }
+                }
+             ?>
+            <br>
         </div>
         
         <?php

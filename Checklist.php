@@ -124,9 +124,9 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "
-                                    <td><span class='done'><input type='checkbox' class='done' />Done</td>";
+                                    <td><span class='done'><input type='checkbox' class='done' name='Status[]' value='$courseno' />Done</td>";
                                 echo "
-                                    <td><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</td>";
+                                    <td><span class='enrolled'><input type='checkbox' class='enrolled' name='Status[]' value='$courseno' />Currently Enrolled</td>";
                                 echo "</tr>";
                                 }
                               ?>
@@ -191,10 +191,10 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <span class='done'><input type='checkbox' class='done' />Done
+                                    <span class='done'><input type='checkbox' class='done' name='Status[]' value='$courseno' />Done
                                     </td>";
                                 echo "<td>
-                                    <span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled
+                                    <span class='enrolled'><input type='checkbox' class='enrolled' name='Status[]' value='$courseno' />Currently Enrolled
                                     </td>";
                                 echo "</tr>";
                                 }
@@ -260,10 +260,10 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <span class='done'><input type='checkbox' class='done' />Done
+                                    <span class='done'><input type='checkbox' class='done' name='Status[]' value='$courseno' />Done
                                     </td>";
                                 echo "<td>
-                                    <span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled
+                                    <span class='enrolled'><input type='checkbox' class='enrolled' name='Status[]' value='$courseno' />Currently Enrolled
                                     </td>";
                                 echo "</tr>";
                                 }
@@ -329,10 +329,10 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <span class='done'><input type='checkbox' class='done' />Done
+                                    <span class='done'><input type='checkbox' class='done' name='Status[]' value='$courseno' />Done
                                     </td>";
                                 echo "<td>
-                                    <span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled
+                                    <span class='enrolled'><input type='checkbox' class='enrolled' name='Status[]' value='$courseno' />Currently Enrolled
                                     </td>";
                                 echo "</tr>";
                                 }
@@ -398,10 +398,10 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <span class='done'><input type='checkbox' class='done' />Done
+                                    <span class='done'><input type='checkbox' class='done' name='Status[]' value='$courseno' />Done
                                     </td>";
                                 echo "<td>
-                                    <span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled
+                                    <span class='enrolled'><input type='checkbox' class='enrolled' name='Status[]' value='$courseno' />Currently Enrolled
                                     </td>";
                                 echo "</tr>";
                                 }
@@ -467,10 +467,10 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <span class='done'><input type='checkbox' class='done' />Done
+                                    <span class='done'><input type='checkbox' class='done' name='Status[]' value='$courseno' />Done
                                     </td>";
                                 echo "<td>
-                                    <span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled
+                                    <span class='enrolled'><input type='checkbox' class='enrolled' name='Status[]' value='$courseno' />Currently Enrolled
                                     </td>";
                                 echo "</tr>";
                                 }
@@ -536,10 +536,10 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <span class='done'><input type='checkbox' class='done' />Done
+                                    <span class='done'><input type='checkbox' class='done' name='Status[]' value='$courseno' />Done
                                     </td>";
                                 echo "<td>
-                                    <span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled
+                                    <span class='enrolled'><input type='checkbox' class='enrolled' name='Status[]' value='$courseno' />Currently Enrolled
                                     </td>";
                                 echo "</tr>";
                                 }
@@ -605,10 +605,10 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <span class='done'><input type='checkbox' class='done' />Done
+                                    <span class='done'><input type='checkbox' class='done' name='Status[]' value='$courseno' />Done
                                     </td>";
                                 echo "<td>
-                                    <span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled
+                                    <span class='enrolled'><input type='checkbox' class='enrolled' name='Status[]' value='$courseno' />Currently Enrolled
                                     </td>";
                                 echo "</tr>";
                                 }
@@ -674,10 +674,10 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <span class='done'><input type='checkbox' class='done' />Done
+                                    <span class='done'><input type='checkbox' class='done' name='Status[]' value='$courseno' />Done
                                     </td>";
                                 echo "<td>
-                                    <span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled
+                                    <span class='enrolled'><input type='checkbox' class='enrolled' name='Status[]' value='$courseno' />Currently Enrolled
                                     </td>";
                                 echo "</tr>";
                                 }
@@ -743,10 +743,10 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <span class='done'><input type='checkbox' class='done' />Done
+                                    <span class='done'><input type='checkbox' class='done' name='Status' value='$courseno' />Done
                                     </td>";
                                 echo "<td>
-                                    <span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled
+                                    <span class='enrolled'><input type='checkbox' class='enrolled' name='Status' value='$courseno' />Currently Enrolled
                                     </td>";
                                 echo "</tr>";
                                 }
@@ -812,10 +812,10 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <span class='done'><input type='checkbox' class='done' />Done
+                                    <span class='done'><input type='checkbox' class='done' name='Status' value='$courseno' />Done
                                     </td>";
                                 echo "<td>
-                                    <span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled
+                                    <span class='enrolled'><input type='checkbox' class='enrolled' name='Status' value='$courseno' />Currently Enrolled
                                     </td>";
                                 echo "</tr>";
                                 }
@@ -866,7 +866,7 @@
                       </tbody>
                        
                       <tbody class="dept-detail">
-                               <?php
+                            <?php
                             $con = mysqli_connect('localhost', 'root', '');
                             mysqli_select_db($con, 'pre_enrollment');
                             $id= $_SESSION['username'];
@@ -881,10 +881,14 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <span class='done'><input type='checkbox' class='done' />Done
+                                <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='done'><input type='checkbox' class='done' name='Status[]' value='$courseno'/>Done
+                                </form>
                                     </td>";
                                 echo "<td>
-                                    <span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled
+                                <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='enrolled'><input type='checkbox' class='enrolled' name='Status[]' value='$courseno'/>Currently Enrolled
+                                </form>
                                     </td>";
                                 echo "</tr>";
                                 }
@@ -895,9 +899,31 @@
           
         <div class="container">
           <form action="Updated_Checklist.php" method="post">
-            <input type="submit" role="button" class="btn btn-info" value="Submit Button">
+            <input type="submit" role="button" class="btn btn-info" value="Update Checklist">
           </form>
-        </div>
+          <?php
+            $id= $_SESSION['username'];
+            $con = mysqli_connect('localhost', 'root', '');
+            mysqli_select_db($con, 'pre_enrollment');
+            
+            $courseno = $row['Course Number'];
+            $desctitle = $row['Descriptive Title'];
+            $units =  $row['Units'];
+            
+            
+            if(isset($_POST['submit'])) {
+                for ($i=0; $i<sizeof($checkBox); $i++) {
+                    $ery_1="SELECT * FROM checklist WHERE check
+                    $ery="INSERT INTO updated_checklist (status) VALUES ('" . $checkbox . "')";
+                    $ery .= "('" . $checkBox[$i] . "'),";
+                    $ery = rtrim($ery,',');
+                    
+                    mysql_query($query) or die (mysql_error() );
+                    echo "Complete";
+                }
+            }
+          ?>
+          </div>          
             
     </div>
 

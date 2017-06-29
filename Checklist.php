@@ -62,9 +62,9 @@
     </div>
 </nav>
 <!--/ nav-->
-        
-        <div class="container-fluid">
-            <h3 style="margin-top:15%" align="center">First Year - First Semester</h3>
+       
+      <div class="container-fluid">
+          <div class="col-md-10 col-md-offset-4"> 
             <?php
             $id= $_SESSION['username'];
             $con = mysqli_connect('localhost', 'root', '');
@@ -93,949 +93,799 @@
             $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' and subyear = '1'";
             $result = mysqli_query($con, $sql);
             ?>
-            
 
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <table class="table" id="myTable">
-                       <tr>
-                           <th>Course Number</th>
-                           <th>Descriptive Title</th>
-                           <th>Units</th>
-                           <th></th>
-                           <th></th>
-                        </tr>
-
-                     <?php
-                        $con = mysqli_connect('localhost', 'root', '');
-                        mysqli_select_db($con, 'pre_enrollment');
-                        $id= $_SESSION['username'];
-                            while ($row = mysqli_fetch_array($result)) {
-                            include_once 'classes/subjectsWithStudents.php';
-                            $courseno = $row['Course Number'];
-                            $desctitle = $row['Descriptive Title'];
-                            $units =  $row['Units'];
-                             
-                            echo "<td>".$courseno."</td>"; 
-                            echo "<td>".$desctitle."</td>";
-                            echo "<td>".$units."</td>";
-                            echo "<td>
-                               <form action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='checkbox[]' id='cb1' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb1'>Done</label>
-                               </center>
-                               </form></td>"; 
-                            echo "<td>
-                               <form name action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='checkbox[]' id='cb2' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb2'>Currently Enrolled</label>
-                               </center>
-                               </form></td>";
-                            echo "</tr>";
-                           }
-                        ?>
-                        
-                      </table>
-                  </div>
-              </div>
-        </div>
-        
-        <div class="container-fluid">
-            <h3 style="margin-top:5%" align="center">First Year - Second Semester</h3>
-            <?php
-            $id= $_SESSION['username'];
-            $con = mysqli_connect('localhost', 'root', '');
-            mysqli_select_db($con, 'pre_enrollment');
-
-            $results_per_page = 40;
-            
-            $s = "select curriculum from students where id_number='$id'";
-            $sl = mysqli_query($con, $s);
-            while ($rows = mysqli_fetch_array($sl)){
-                $cur = $rows['curriculum'];
-            }
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Second' and subyear = '1'";
-            $result = mysqli_query($con,$sql);
-            $number_of_results = mysqli_num_rows($result);
-            $number_of_pages = ceil($number_of_results/$results_per_page);
-
-            if (!isset($_GET['page'])){
-                $page = 1;
-            } else {
-                $page = $_GET['page'];
-            }
-
-            $this_page_result = ($page - 1) * $results_per_page;
-
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Second' and subyear = '1'";
-            $result = mysqli_query($con, $sql);
-            ?>
-            
-
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <table class="table" id="myTable">
+                    <table id="checklistInfo" style="margin-top:15%">
+                        <thead class="dept-name">
                         <tr>
-                           <th>Course Number</th>
-                           <th>Descriptive Title</th>
-                           <th>Units</th>
-                           <th></th>
-                           <th></th>
+                          <th colspan="10"><span></span><span class="name">First Year - First Semester</span></th>
                         </tr>
-
-                     <?php
-                        $con = mysqli_connect('localhost', 'root', '');
-                        mysqli_select_db($con, 'pre_enrollment');
-                        $id= $_SESSION['username'];
-                            while ($row = mysqli_fetch_array($result)) {
-                            include_once 'classes/subjectsWithStudents.php';
-                            $courseno = $row['Course Number'];
-                            $desctitle = $row['Descriptive Title'];
-                            $units =  $row['Units'];
-                             
-                            echo "<td>".$courseno."</td>"; 
-                            echo "<td>".$desctitle."</td>";
-                            echo "<td>".$units."</td>";
-                            echo "<td>
-                               <form action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='checkbox[]' id='cb1' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb1'>Done</label>
-                               </center>
-                               </form></td>"; 
-                            echo "<td>
-                               <form name action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='checkbox[]' id='cb2' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb2'>Currently Enrolled</label>
-                               </center>
-                               </form></td>";
-                            echo "</tr>";
-                           }
-                        ?>
-                        
-                      </table>
-                  </div>
-              </div>
-        </div>
-        
-        <div class="container-fluid">
-            <h3 style="margin-top:5%" align="center">First Year - Short Term</h3>
-            <?php
-            $id= $_SESSION['username'];
-            $con = mysqli_connect('localhost', 'root', '');
-            mysqli_select_db($con, 'pre_enrollment');
-
-            $results_per_page = 40;
-            
-            $s = "select curriculum from students where id_number='$id'";
-            $sl = mysqli_query($con, $s);
-            while ($rows = mysqli_fetch_array($sl)){
-                $cur = $rows['curriculum'];
-            }
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur'  and term = 'Short' AND subyear = '1'";
-            $result = mysqli_query($con,$sql);
-            $number_of_results = mysqli_num_rows($result);
-            $number_of_pages = ceil($number_of_results/$results_per_page);
-
-            if (!isset($_GET['page'])){
-                $page = 1;
-            } else {
-                $page = $_GET['page'];
-            }
-
-            $this_page_result = ($page - 1) * $results_per_page;
-
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Short' AND subyear = '1'";
-            $result = mysqli_query($con, $sql);
-            ?>
-            
-
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <table class="table" id="myTable">
+                      </thead>
+                      <tbody>
                         <tr>
-                           <th>Course Number</th>
-                           <th>Descriptive Title</th>
-                           <th>Units</th>
-                           <th></th>
-                           <th></th>
+                          <th>Course Number</th>
+                          <th>Descriptive Title</th>
+                          <th>Units</th>
                         </tr>
-
-                     <?php
-                        $con = mysqli_connect('localhost', 'root', '');
-                        mysqli_select_db($con, 'pre_enrollment');
-                        $id= $_SESSION['username'];
-                            while ($row = mysqli_fetch_array($result)) {
-                            include_once 'classes/subjectsWithStudents.php';
-                            $courseno = $row['Course Number'];
-                            $desctitle = $row['Descriptive Title'];
-                            $units =  $row['Units'];
-                             
-                            echo "<td>".$courseno."</td>"; 
-                            echo "<td>".$desctitle."</td>";
-                            echo "<td>".$units."</td>";
-                            echo "<td>
-                               <form action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='checkbox[]' id='cb1' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb1'>Done</label>
-                               </center>
-                               </form></td>"; 
-                            echo "<td>
-                               <form name action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='checkbox[]' id='cb2' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb2'>Currently Enrolled</label>
-                               </center>
-                               </form></td>";
-                            echo "</tr>";
-                           }
-                        ?>
-                        
-                      </table>
-                  </div>
-              </div>
-        </div>
-        
-        <div class="container-fluid">
-            <h3 style="margin-top:5%" align="center">Second Year - First Semester</h3>
-            <?php
-            $id= $_SESSION['username'];
-            $con = mysqli_connect('localhost', 'root', '');
-            mysqli_select_db($con, 'pre_enrollment');
-
-            $results_per_page = 40;
-            
-            $s = "select curriculum from students where id_number='$id'";
-            $sl = mysqli_query($con, $s);
-            while ($rows = mysqli_fetch_array($sl)){
-                $cur = $rows['curriculum'];
-            }
-            $sql = "SELECT DISTINCT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' AND subyear = '2'";
-            $result = mysqli_query($con,$sql);
-            $number_of_results = mysqli_num_rows($result);
-            $number_of_pages = ceil($number_of_results/$results_per_page);
-
-            if (!isset($_GET['page'])){
-                $page = 1;
-            } else {
-                $page = $_GET['page'];
-            }
-
-            $this_page_result = ($page - 1) * $results_per_page;
-
-            $sql = "SELECT DISTINCT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' AND subyear = '2'";
-            $result = mysqli_query($con, $sql);
-            ?>
-            
-
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <table class="table" id="myTable">
-                      <tr>
-                           <th>Course Number</th>
-                           <th>Descriptive Title</th>
-                           <th>Units</th>
-                           <th></th>
-                           <th></th>
-                        </tr>
-
-                     <?php
-                        $con = mysqli_connect('localhost', 'root', '');
-                        mysqli_select_db($con, 'pre_enrollment');
-                        $id= $_SESSION['username'];
-                            while ($row = mysqli_fetch_array($result)) {
-                            include_once 'classes/subjectsWithStudents.php';
-                            $courseno = $row['Course Number'];
-                            $desctitle = $row['Descriptive Title'];
-                            $units =  $row['Units'];
-                             
-                            echo "<td>".$courseno."</td>"; 
-                            echo "<td>".$desctitle."</td>";
-                            echo "<td>".$units."</td>";
-                            echo "<td>
-                               <form action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='checkbox[]' id='cb1' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb1'>Done</label>
-                               </center>
-                               </form></td>"; 
-                            echo "<td>
-                               <form name action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='checkbox[]' id='cb2' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb2'>Currently Enrolled</label>
-                               </center>
-                               </form></td>";
-                            echo "</tr>";
-                           }
-                        ?>
-                        
-                      </table>
-                  </div>
-              </div>
-        </div>
-        
-         <div class="container-fluid">
-            <h3 style="margin-top:5%" align="center">Second Year - Second Semester</h3>
-            <?php
-            $id= $_SESSION['username'];
-            $con = mysqli_connect('localhost', 'root', '');
-            mysqli_select_db($con, 'pre_enrollment');
-
-            $results_per_page = 40;
-            
-            $s = "select curriculum from students where id_number='$id'";
-            $sl = mysqli_query($con, $s);
-            while ($rows = mysqli_fetch_array($sl)){
-                $cur = $rows['curriculum'];
-            }
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Second' AND subyear = '2'";
-            $result = mysqli_query($con,$sql);
-            $number_of_results = mysqli_num_rows($result);
-            $number_of_pages = ceil($number_of_results/$results_per_page);
-
-            if (!isset($_GET['page'])){
-                $page = 1;
-            } else {
-                $page = $_GET['page'];
-            }
-
-            $this_page_result = ($page - 1) * $results_per_page;
-
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Second' AND subyear = '2'";
-            $result = mysqli_query($con, $sql);
-            ?>
-            
-
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <table class="table" id="myTable">
-                       <tr>
-                           <th>Course Number</th>
-                           <th>Descriptive Title</th>
-                           <th>Units</th>
-                           <th></th>
-                           <th></th>
-                        </tr>
-
-                     <?php
-                        $con = mysqli_connect('localhost', 'root', '');
-                        mysqli_select_db($con, 'pre_enrollment');
-                        $id= $_SESSION['username'];
-                            while ($row = mysqli_fetch_array($result)) {
-                            include_once 'classes/subjectsWithStudents.php';
-                            $courseno = $row['Course Number'];
-                            $desctitle = $row['Descriptive Title'];
-                            $units =  $row['Units'];
-                             
-                            echo "<td>".$courseno."</td>"; 
-                            echo "<td>".$desctitle."</td>";
-                            echo "<td>".$units."</td>";
-                            echo "<td>
-                               <form action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='checkbox[]' id='cb1' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb1'>Done</label>
-                               </center>
-                               </form></td>"; 
-                            echo "<td>
-                               <form name action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='checkbox[]' id='cb2' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb2'>Currently Enrolled</label>
-                               </center>
-                               </form></td>";
-                            echo "</tr>";
-                           }
-                        ?>
-                        
-                      </table>
-                  </div>
-              </div>
-        </div>
-        
-        <div class="container-fluid">
-            <h3 style="margin-top:5%" align="center">Second Year - Short Term</h3>
-            <?php
-            $id= $_SESSION['username'];
-            $con = mysqli_connect('localhost', 'root', '');
-            mysqli_select_db($con, 'pre_enrollment');
-
-            $results_per_page = 40;
-            
-            $s = "select curriculum from students where id_number='$id'";
-            $sl = mysqli_query($con, $s);
-            while ($rows = mysqli_fetch_array($sl)){
-                $cur = $rows['curriculum'];
-            }
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Short' AND subyear = '2'";
-            $result = mysqli_query($con,$sql);
-            $number_of_results = mysqli_num_rows($result);
-            $number_of_pages = ceil($number_of_results/$results_per_page);
-
-            if (!isset($_GET['page'])){
-                $page = 1;
-            } else {
-                $page = $_GET['page'];
-            }
-
-            $this_page_result = ($page - 1) * $results_per_page;
-
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Short' AND subyear = '2'";
-            $result = mysqli_query($con, $sql);
-            ?>
-            
-
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <table class="table" id="myTable">
-                       <tr>
-                           <th>Course Number</th>
-                           <th>Descriptive Title</th>
-                           <th>Units</th>
-                           <th></th>
-                           <th></th>
-                        </tr>
-
-                     <?php
-                        $con = mysqli_connect('localhost', 'root', '');
-                        mysqli_select_db($con, 'pre_enrollment');
-                        $id= $_SESSION['username'];
-                            while ($row = mysqli_fetch_array($result)) {
-                            include_once 'classes/subjectsWithStudents.php';
-                            $courseno = $row['Course Number'];
-                            $desctitle = $row['Descriptive Title'];
-                            $units =  $row['Units'];
-                             
-                            echo "<td>".$courseno."</td>"; 
-                            echo "<td>".$desctitle."</td>";
-                            echo "<td>".$units."</td>";
-                            echo "<td>
-                               <form action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='checkbox[]' id='cb1' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb1'>Done</label>
-                               </center>
-                               </form></td>"; 
-                            echo "<td>
-                               <form name action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='checkbox[]' id='cb2' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb2'>Currently Enrolled</label>
-                               </center>
-                               </form></td>";
-                            echo "</tr>";
-                           }
-                        ?>
-                        
-                      </table>
-                  </div>
-              </div>
-        </div>
-        
-        <div class="container-fluid">
-            <h3 style="margin-top:5%" align="center">Third Year - First Semester</h3>
-            <?php
-            $id= $_SESSION['username'];
-            $con = mysqli_connect('localhost', 'root', '');
-            mysqli_select_db($con, 'pre_enrollment');
-
-            $results_per_page = 40;
-            
-            $s = "select curriculum from students where id_number='$id'";
-            $sl = mysqli_query($con, $s);
-            while ($rows = mysqli_fetch_array($sl)){
-                $cur = $rows['curriculum'];
-            }
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' AND subyear = '3'";
-            $result = mysqli_query($con,$sql);
-            $number_of_results = mysqli_num_rows($result);
-            $number_of_pages = ceil($number_of_results/$results_per_page);
-
-            if (!isset($_GET['page'])){
-                $page = 1;
-            } else {
-                $page = $_GET['page'];
-            }
-
-            $this_page_result = ($page - 1) * $results_per_page;
-
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' AND subyear = '3'";
-            $result = mysqli_query($con, $sql);
-            ?>
-            
-
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <table class="table" id="myTable">
-                       <tr>
-                           <th>Course Number</th>
-                           <th>Descriptive Title</th>
-                           <th>Units</th>
-                           <th></th>
-                           <th></th>
-                        </tr>
-
-                     <?php
-                        $con = mysqli_connect('localhost', 'root', '');
-                        mysqli_select_db($con, 'pre_enrollment');
-                        $id= $_SESSION['username'];
-                            while ($row = mysqli_fetch_array($result)) {
-                            include_once 'classes/subjectsWithStudents.php';
-                            $courseno = $row['Course Number'];
-                            $desctitle = $row['Descriptive Title'];
-                            $units =  $row['Units'];
-                             
-                            echo "<td>".$courseno."</td>"; 
-                            echo "<td>".$desctitle."</td>";
-                            echo "<td>".$units."</td>";
-                             echo "<td>
-                               <form action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='checkbox[]' id='cb1' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb1'>Done</label>
-                               </center>
-                               </form></td>"; 
-                            echo "<td>
-                               <form name action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='checkbox[]' id='cb2' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb2'>Currently Enrolled</label>
-                               </center>
-                               </form></td>";
-                            echo "</tr>";
-                           }
-                        ?>
-                        
-                      </table>
-                  </div>
-              </div>
-        </div>
-        
-        <div class="container-fluid">
-            <h3 style="margin-top:5%" align="center">Third Year - Second Semester</h3>
-            <?php
-            $id= $_SESSION['username'];
-            $con = mysqli_connect('localhost', 'root', '');
-            mysqli_select_db($con, 'pre_enrollment');
-
-            $results_per_page = 40;
-            
-            $s = "select curriculum from students where id_number='$id'";
-            $sl = mysqli_query($con, $s);
-            while ($rows = mysqli_fetch_array($sl)){
-                $cur = $rows['curriculum'];
-            }
-            $sql = "SELECT DISTINCT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Second' AND subyear = '3'";
-            $result = mysqli_query($con,$sql);
-            $number_of_results = mysqli_num_rows($result);
-            $number_of_pages = ceil($number_of_results/$results_per_page);
-
-            if (!isset($_GET['page'])){
-                $page = 1;
-            } else {
-                $page = $_GET['page'];
-            }
-
-            $this_page_result = ($page - 1) * $results_per_page;
-
-            $sql = "SELECT DISTINCT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Second' AND subyear = '3'";
-            $result = mysqli_query($con, $sql);
-            ?>
-            
-
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <table class="table" id="myTable">
-                       <tr>
-                           <th>Course Number</th>
-                           <th>Descriptive Title</th>
-                           <th>Units</th>
-                           <th></th>
-                           <th></th>
-                        </tr>
-
-                     <?php
-                        $con = mysqli_connect('localhost', 'root', '');
-                        mysqli_select_db($con, 'pre_enrollment');
-                        $id= $_SESSION['username'];
-                            while ($row = mysqli_fetch_array($result)) {
-                            include_once 'classes/subjectsWithStudents.php';
-                            $courseno = $row['Course Number'];
-                            $desctitle = $row['Descriptive Title'];
-                            $units =  $row['Units'];
-                             
-                            echo "<td>".$courseno."</td>"; 
-                            echo "<td>".$desctitle."</td>";
-                            echo "<td>".$units."</td>";
-                            echo "<td>
-                               <form action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='checkbox[]' id='cb1' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb1'>Done</label>
-                               </center>
-                               </form></td>"; 
-                            echo "<td>
-                               <form name action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='checkbox[]' id='cb2' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb2'>Currently Enrolled</label>
-                               </center>
-                               </form></td>";
-                            echo "</tr>";
-                           }
-                        ?>
-                        
-                      </table>
-                  </div>
-              </div>
-        </div>
-        
-        <div class="container-fluid">
-            <h3 style="margin-top:5%" align="center">Third Year - Short Term</h3>
-            <?php
-            $id= $_SESSION['username'];
-            $con = mysqli_connect('localhost', 'root', '');
-            mysqli_select_db($con, 'pre_enrollment');
-
-            $results_per_page = 40;
-            
-            $s = "select curriculum from students where id_number='$id'";
-            $sl = mysqli_query($con, $s);
-            while ($rows = mysqli_fetch_array($sl)){
-                $cur = $rows['curriculum'];
-            }
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Short' AND subyear = '3'";
-            $result = mysqli_query($con,$sql);
-            $number_of_results = mysqli_num_rows($result);
-            $number_of_pages = ceil($number_of_results/$results_per_page);
-
-            if (!isset($_GET['page'])){
-                $page = 1;
-            } else {
-                $page = $_GET['page'];
-            }
-
-            $this_page_result = ($page - 1) * $results_per_page;
-
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Short' AND subyear = '3'";
-            $result = mysqli_query($con, $sql);
-            ?>
-            
-
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <table class="table" id="myTable">
-                       <tr>
-                           <th>Course Number</th>
-                           <th>Descriptive Title</th>
-                           <th>Units</th>
-                           <th></th>
-                           <th></th>
-                        </tr>
-
-                     <?php
-                        $con = mysqli_connect('localhost', 'root', '');
-                        mysqli_select_db($con, 'pre_enrollment');
-                        $id= $_SESSION['username'];
-                            while ($row = mysqli_fetch_array($result)) {
-                            include_once 'classes/subjectsWithStudents.php';
-                            $courseno = $row['Course Number'];
-                            $desctitle = $row['Descriptive Title'];
-                            $units =  $row['Units'];
-                             
-                            echo "<td>".$courseno."</td>"; 
-                            echo "<td>".$desctitle."</td>";
-                            echo "<td>".$units."</td>";
-                            echo "<td>
-                               <form action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='checkbox[]' id='cb1' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb1'>Done</label>
-                               </center>
-                               </form></td>"; 
-                            echo "<td>
-                               <form name action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='checkbox[]' id='cb2' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb2'>Currently Enrolled</label>
-                               </center>
-                               </form></td>";
-                            echo "</tr>";
-                           }
-                        ?>
-                        
-                      </table>
-                  </div>
-              </div>
-        </div>
-        
-        <div class="container-fluid">
-            <h3 style="margin-top:5%" align="center">Fourth Year - First Semester</h3>
-            <?php
-            $id= $_SESSION['username'];
-            $con = mysqli_connect('localhost', 'root', '');
-            mysqli_select_db($con, 'pre_enrollment');
-
-            $results_per_page = 40;
-            
-            $s = "select curriculum from students where id_number='$id'";
-            $sl = mysqli_query($con, $s);
-            while ($rows = mysqli_fetch_array($sl)){
-                $cur = $rows['curriculum'];
-            }
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' AND subyear = '4'";
-            $result = mysqli_query($con,$sql);
-            $number_of_results = mysqli_num_rows($result);
-            $number_of_pages = ceil($number_of_results/$results_per_page);
-
-            if (!isset($_GET['page'])){
-                $page = 1;
-            } else {
-                $page = $_GET['page'];
-            }
-
-            $this_page_result = ($page - 1) * $results_per_page;
-
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' AND subyear = '4'";
-            $result = mysqli_query($con, $sql);
-            ?>
-            
-
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <table class="table" id="myTable">
-                       <tr>
-                           <th>Course Number</th>
-                           <th>Descriptive Title</th>
-                           <th>Units</th>
-                           <th></th>
-                           <th></th>
-                        </tr>
-
-                     <?php
-                        $con = mysqli_connect('localhost', 'root', '');
-                        mysqli_select_db($con, 'pre_enrollment');
-                        $id= $_SESSION['username'];
-                            while ($row = mysqli_fetch_array($result)) {
-                            include_once 'classes/subjectsWithStudents.php';
-                            $courseno = $row['Course Number'];
-                            $desctitle = $row['Descriptive Title'];
-                            $units =  $row['Units'];
-                             
-                            echo "<td>".$courseno."</td>"; 
-                            echo "<td>".$desctitle."</td>";
-                            echo "<td>".$units."</td>";
-                            echo "<td>
-                               <form action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='checkbox[]' id='cb1' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb1'>Done</label>
-                               </center>
-                               </form></td>"; 
-                            echo "<td>
-                               <form name action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='checkbox[]' id='cb2' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb2'>Currently Enrolled</label>
-                               </center>
-                               </form></td>";
-                            echo "</tr>";
-                           }
-                        ?>
-                        
-                      </table>
-                  </div>
-              </div>
-        </div>
-        
-        <div class="container-fluid">
-            <h3 style="margin-top:5%" align="center">Fourth Year - Second Semester</h3>
-            <?php
-            $id= $_SESSION['username'];
-            $con = mysqli_connect('localhost', 'root', '');
-            mysqli_select_db($con, 'pre_enrollment');
-
-            $results_per_page = 40;
-            
-            $s = "select curriculum from students where id_number='$id'";
-            $sl = mysqli_query($con, $s);
-            while ($rows = mysqli_fetch_array($sl)){
-                $cur = $rows['curriculum'];
-            }
-            $sql = "SELECT DISTINCT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Second' AND subyear = '4'";
-            $result = mysqli_query($con,$sql);
-            $number_of_results = mysqli_num_rows($result);
-            $number_of_pages = ceil($number_of_results/$results_per_page);
-
-            if (!isset($_GET['page'])){
-                $page = 1;
-            } else {
-                $page = $_GET['page'];
-            }
-
-            $this_page_result = ($page - 1) * $results_per_page;
-
-            $sql = "SELECT DISTINCT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Second' AND subyear = '4'";
-            $result = mysqli_query($con, $sql);
-            ?>
-
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <table class="table" id="myTable">
-                       <tr>
-                           <th>Course Number</th>
-                           <th>Descriptive Title</th>
-                           <th>Units</th>
-                           <th></th>
-                           <th></th>
-                        </tr>
-
-                     <?php
-                        $con = mysqli_connect('localhost', 'root', '');
-                        mysqli_select_db($con, 'pre_enrollment');
-                        $id= $_SESSION['username'];
-                            while ($row = mysqli_fetch_array($result)) {
-                            include_once 'classes/subjectsWithStudents.php';
-                            $courseno = $row['Course Number'];
-                            $desctitle = $row['Descriptive Title'];
-                            $units =  $row['Units'];
-                             
-                            echo "<td>".$courseno."</td>"; 
-                            echo "<td>".$desctitle."</td>";
-                            echo "<td>".$units."</td>";
-                            echo "<td>
-                               <form action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='checkbox[]' id='cb1' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb1'>Done</label>
-                               </center>
-                               </form></td>"; 
-                            echo "<td>
-                               <form name action='Updated_Checklist.php' method='POST'>
-                               <center>
-                               <input type='checkbox' name='checkbox[]' id='cb2' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb2'>Currently Enrolled</label>
-                               </center>
-                               </form></td>";
-                            echo "</tr>";
-                           }
-                        ?>
-                        
-                      </table>
-                  </div>
-              </div>
-        </div>
-        
-        <div class="container-fluid">
-            <h3 style="margin-top:5%" align="center">Electives</h3>
-            <?php
-            $id= $_SESSION['username'];
-            $con = mysqli_connect('localhost', 'root', '');
-            mysqli_select_db($con, 'pre_enrollment');
-
-            $results_per_page = 40;
-            
-            $s = "select curriculum from students where id_number='$id'";
-            $sl = mysqli_query($con, $s);
-            while ($rows = mysqli_fetch_array($sl)){
-                $cur = $rows['curriculum'];
-            }
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = '0' AND subyear = '0'";
-            $result = mysqli_query($con,$sql);
-            $number_of_results = mysqli_num_rows($result);
-            $number_of_pages = ceil($number_of_results/$results_per_page);
-
-            if (!isset($_GET['page'])){
-                $page = 1;
-            } else {
-                $page = $_GET['page'];
-            }
-
-            $this_page_result = ($page - 1) * $results_per_page;
-
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = '0' AND subyear = '0'";
-            $result = mysqli_query($con, $sql);
-            ?>
-            
-
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <table class="table" id="myTable">
-                        <tr>
-                           <th>Course Number</th>
-                           <th>Descriptive Title</th>
-                           <th>Units</th>
-                           <th></th>
-                           <th></th>
-                        </tr>
-
-                     <?php
-                        $con = mysqli_connect('localhost', 'root', '');
-                        mysqli_select_db($con, 'pre_enrollment');
-                        $id= $_SESSION['username'];
-                            while ($row = mysqli_fetch_array($result)) {
-                            include_once 'classes/subjectsWithStudents.php';
-                            $courseno = $row['Course Number'];
-                            $desctitle = $row['Descriptive Title'];
-                            $units =  $row['Units'];
-                             
-                            echo "<td>".$courseno."</td>"; 
-                            echo "<td>".$desctitle."</td>";
-                            echo "<td>".$units."</td>";
-                            echo "<td>
-                               <form action='Updated_Checklist.php' method='POST'>
-                               <center><input type='checkbox' name='checkbox[]' id='cb1' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb1'>Done</label></center>
-                               </form></td>"; 
-                            echo "<td>
-                               <form action='Updated_Checklist.php' method='POST'>
-                               <center><input type='checkbox' name='checkbox[]' id='cb2' onclick='addClassCheck(this)' value='$courseno'/>
-                               <label for='cb2'>Currently Enrolled</label></center>
-                               </form></td>";
-                            echo "</tr>";
-                           }
-                        ?>
-                        
-                      </table>
-                  </div>
-              </div>
-        </div>
-        
-              <br>
-            <div class="form-group">
-                <div class="container-fluid">
-                    <div class="row">
-                        <label class="col-sm-3 control-label">&nbsp;</label>
-                        <div class="col-sm-8">
-                            <form method="POST" action="Updated_Checklist.php">
-                                <input type="submit" name="update" value="Update Checklist"/>
-                            </form>
-                            
-                           <?php
-                            $id= $_SESSION['username'];
+                      </tbody>
+                       
+                      <tbody class="dept-detail">
+                            <?php
                             $con = mysqli_connect('localhost', 'root', '');
-                            mysqli_select_db($con, 'pre_enrollment');   
-                            
-                            if(isset($_POST['update'])){
-                                $query="INSERT INTO updated_checcklist (checklistID) VALUES ('" . $checkBox . "')"; 
-                            if(!empty($_POST['checkbox'])){
-                                foreach($_POST['checkbox'] as $checked){
-                                    echo $checked."<br>";
+                            mysqli_select_db($con, 'pre_enrollment');
+                            $id= $_SESSION['username'];
+                                while ($row = mysqli_fetch_array($result)) {
+                                include_once 'classes/subjectsWithStudents.php';
+                                $courseno = $row['Course Number'];
+                                $desctitle = $row['Descriptive Title'];
+                                $units =  $row['Units'];
+                                
+                                echo "<tr>";
+                                echo "<td>".$courseno."</td>"; 
+                                echo "<td>".$desctitle."</td>";
+                                echo "<td>".$units."</td>";
+                                echo "<td>
+                                    <th><span class='done'><input type='checkbox' class='done' />Done</th>
+                                    </td>";
+                                echo "<td>
+                                    <th><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</th>
+                                    </td>";
+                                echo "</tr>";
                                 }
-                            }
-                            }
-                            ?>
-                       </div>
-                    </div>
-                </div>
-            </div>
+                              ?>
+                        </tbody>
+                        
+                    <?php
+                        $id= $_SESSION['username'];
+                        $con = mysqli_connect('localhost', 'root', '');
+                        mysqli_select_db($con, 'pre_enrollment');
 
+                        $results_per_page = 40;
+
+                        $s = "select curriculum from students where id_number='$id'";
+                        $sl = mysqli_query($con, $s);
+                        while ($rows = mysqli_fetch_array($sl)){
+                            $cur = $rows['curriculum'];
+                        }
+                        $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Second' and subyear = '1'";
+                        $result = mysqli_query($con,$sql);
+                        $number_of_results = mysqli_num_rows($result);
+                        $number_of_pages = ceil($number_of_results/$results_per_page);
+
+                        if (!isset($_GET['page'])){
+                            $page = 1;
+                        } else {
+                            $page = $_GET['page'];
+                        }
+
+                        $this_page_result = ($page - 1) * $results_per_page;
+
+                        $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Second' and subyear = '1'";
+                        $result = mysqli_query($con, $sql);
+                        ?>
+                    
+                        <thead class="dept-name">
+                        <tr>
+                          <th colspan="10"><span></span><span class="name">First Year - Second Semester</span></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>Course Number</th>
+                          <th>Descriptive Title</th>
+                          <th>Units</th>
+                        </tr>
+                      </tbody>
+                       
+                      <tbody class="dept-detail">
+                            <?php
+                            $con = mysqli_connect('localhost', 'root', '');
+                            mysqli_select_db($con, 'pre_enrollment');
+                            $id= $_SESSION['username'];
+                                while ($row = mysqli_fetch_array($result)) {
+                                include_once 'classes/subjectsWithStudents.php';
+                                $courseno = $row['Course Number'];
+                                $desctitle = $row['Descriptive Title'];
+                                $units =  $row['Units'];
+                                
+                                echo "<tr>";
+                                echo "<td>".$courseno."</td>"; 
+                                echo "<td>".$desctitle."</td>";
+                                echo "<td>".$units."</td>";
+                                echo "<td>
+                                    <th><span class='done'><input type='checkbox' class='done' />Done</th>
+                                    </td>";
+                                echo "<td>
+                                    <th><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</th>
+                                    </td>";
+                                echo "</tr>";
+                                }
+                              ?>
+                        </tbody>
+   
+                    <?php
+                        $id= $_SESSION['username'];
+                        $con = mysqli_connect('localhost', 'root', '');
+                        mysqli_select_db($con, 'pre_enrollment');
+
+                        $results_per_page = 40;
+
+                        $s = "select curriculum from students where id_number='$id'";
+                        $sl = mysqli_query($con, $s);
+                        while ($rows = mysqli_fetch_array($sl)){
+                            $cur = $rows['curriculum'];
+                        }
+                        $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Short' and subyear = '1'";
+                        $result = mysqli_query($con,$sql);
+                        $number_of_results = mysqli_num_rows($result);
+                        $number_of_pages = ceil($number_of_results/$results_per_page);
+
+                        if (!isset($_GET['page'])){
+                            $page = 1;
+                        } else {
+                            $page = $_GET['page'];
+                        }
+
+                        $this_page_result = ($page - 1) * $results_per_page;
+
+                        $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Short' and subyear = '1'";
+                        $result = mysqli_query($con, $sql);
+                    ?>
     
+                     <thead class="dept-name">
+                        <tr>
+                          <th colspan="10"><span></span><span class="name">First Year - Short Term</span></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>Course Number</th>
+                          <th>Descriptive Title</th>
+                          <th>Units</th>
+                        </tr>
+                      </tbody>
+                       
+                      <tbody class="dept-detail">
+                            <?php
+                            $con = mysqli_connect('localhost', 'root', '');
+                            mysqli_select_db($con, 'pre_enrollment');
+                            $id= $_SESSION['username'];
+                                while ($row = mysqli_fetch_array($result)) {
+                                include_once 'classes/subjectsWithStudents.php';
+                                $courseno = $row['Course Number'];
+                                $desctitle = $row['Descriptive Title'];
+                                $units =  $row['Units'];
+                                
+                                echo "<tr>";
+                                echo "<td>".$courseno."</td>"; 
+                                echo "<td>".$desctitle."</td>";
+                                echo "<td>".$units."</td>";
+                                echo "<td>
+                                    <th><span class='done'><input type='checkbox' class='done' />Done</th>
+                                    </td>";
+                                echo "<td>
+                                    <th><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</th>
+                                    </td>";
+                                echo "</tr>";
+                                }
+                              ?>
+                        </tbody>
+          
+                    <?php
+                        $id= $_SESSION['username'];
+                        $con = mysqli_connect('localhost', 'root', '');
+                        mysqli_select_db($con, 'pre_enrollment');
+
+                        $results_per_page = 40;
+
+                        $s = "select curriculum from students where id_number='$id'";
+                        $sl = mysqli_query($con, $s);
+                        while ($rows = mysqli_fetch_array($sl)){
+                            $cur = $rows['curriculum'];
+                        }
+                        $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' and subyear = '2'";
+                        $result = mysqli_query($con,$sql);
+                        $number_of_results = mysqli_num_rows($result);
+                        $number_of_pages = ceil($number_of_results/$results_per_page);
+
+                        if (!isset($_GET['page'])){
+                            $page = 1;
+                        } else {
+                            $page = $_GET['page'];
+                        }
+
+                        $this_page_result = ($page - 1) * $results_per_page;
+
+                        $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' and subyear = '2'";
+                        $result = mysqli_query($con, $sql);
+                        ?>
+    
+                        <thead class="dept-name">
+                        <tr>
+                          <th colspan="10"><span></span><span class="name">Second Year - First Semester</span></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>Course Number</th>
+                          <th>Descriptive Title</th>
+                          <th>Units</th>
+                        </tr>
+                      </tbody>
+                       
+                      <tbody class="dept-detail">
+                               <?php
+                            $con = mysqli_connect('localhost', 'root', '');
+                            mysqli_select_db($con, 'pre_enrollment');
+                            $id= $_SESSION['username'];
+                                while ($row = mysqli_fetch_array($result)) {
+                                include_once 'classes/subjectsWithStudents.php';
+                                $courseno = $row['Course Number'];
+                                $desctitle = $row['Descriptive Title'];
+                                $units =  $row['Units'];
+                                
+                                echo "<tr>";
+                                echo "<td>".$courseno."</td>"; 
+                                echo "<td>".$desctitle."</td>";
+                                echo "<td>".$units."</td>";
+                                echo "<td>
+                                    <th><span class='done'><input type='checkbox' class='done' />Done</th>
+                                    </td>";
+                                echo "<td>
+                                    <th><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</th>
+                                    </td>";
+                                echo "</tr>";
+                                }
+                              ?>
+                    </tbody>
+                        
+                    <?php
+                        $id= $_SESSION['username'];
+                        $con = mysqli_connect('localhost', 'root', '');
+                        mysqli_select_db($con, 'pre_enrollment');
+
+                        $results_per_page = 40;
+
+                        $s = "select curriculum from students where id_number='$id'";
+                        $sl = mysqli_query($con, $s);
+                        while ($rows = mysqli_fetch_array($sl)){
+                            $cur = $rows['curriculum'];
+                        }
+                        $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Second' and subyear = '2'";
+                        $result = mysqli_query($con,$sql);
+                        $number_of_results = mysqli_num_rows($result);
+                        $number_of_pages = ceil($number_of_results/$results_per_page);
+
+                        if (!isset($_GET['page'])){
+                            $page = 1;
+                        } else {
+                            $page = $_GET['page'];
+                        }
+
+                        $this_page_result = ($page - 1) * $results_per_page;
+
+                        $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Second' and subyear = '2'";
+                        $result = mysqli_query($con, $sql);
+                    ?>
+    
+                     <thead class="dept-name">
+                        <tr>
+                          <th colspan="10"><span></span><span class="name">Second Year - Second Semester</span></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>Course Number</th>
+                          <th>Descriptive Title</th>
+                          <th>Units</th>
+                        </tr>
+                      </tbody>
+                       
+                      <tbody class="dept-detail">
+                            <?php
+                            $con = mysqli_connect('localhost', 'root', '');
+                            mysqli_select_db($con, 'pre_enrollment');
+                            $id= $_SESSION['username'];
+                                while ($row = mysqli_fetch_array($result)) {
+                                include_once 'classes/subjectsWithStudents.php';
+                                $courseno = $row['Course Number'];
+                                $desctitle = $row['Descriptive Title'];
+                                $units =  $row['Units'];
+                                
+                                echo "<tr>";
+                                echo "<td>".$courseno."</td>"; 
+                                echo "<td>".$desctitle."</td>";
+                                echo "<td>".$units."</td>";
+                                echo "<td>
+                                    <th><span class='done'><input type='checkbox' class='done' />Done</th>
+                                    </td>";
+                                echo "<td>
+                                    <th><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</th>
+                                    </td>";
+                                echo "</tr>";
+                                }
+                              ?>
+                        </tbody>
+          
+                    <?php
+                        $id= $_SESSION['username'];
+                        $con = mysqli_connect('localhost', 'root', '');
+                        mysqli_select_db($con, 'pre_enrollment');
+
+                        $results_per_page = 40;
+
+                        $s = "select curriculum from students where id_number='$id'";
+                        $sl = mysqli_query($con, $s);
+                        while ($rows = mysqli_fetch_array($sl)){
+                            $cur = $rows['curriculum'];
+                        }
+                        $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Short' and subyear = '2'";
+                        $result = mysqli_query($con,$sql);
+                        $number_of_results = mysqli_num_rows($result);
+                        $number_of_pages = ceil($number_of_results/$results_per_page);
+
+                        if (!isset($_GET['page'])){
+                            $page = 1;
+                        } else {
+                            $page = $_GET['page'];
+                        }
+
+                        $this_page_result = ($page - 1) * $results_per_page;
+
+                        $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Short' and subyear = '2'";
+                        $result = mysqli_query($con, $sql);
+                        ?>
+    
+                        <thead class="dept-name">
+                        <tr>
+                          <th colspan="10"><span></span><span class="name">Second Year - Short Term</span></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>Course Number</th>
+                          <th>Descriptive Title</th>
+                          <th>Units</th>
+                        </tr>
+                      </tbody>
+                       
+                      <tbody class="dept-detail">
+                               <?php
+                            $con = mysqli_connect('localhost', 'root', '');
+                            mysqli_select_db($con, 'pre_enrollment');
+                            $id= $_SESSION['username'];
+                                while ($row = mysqli_fetch_array($result)) {
+                                include_once 'classes/subjectsWithStudents.php';
+                                $courseno = $row['Course Number'];
+                                $desctitle = $row['Descriptive Title'];
+                                $units =  $row['Units'];
+                                
+                                echo "<tr>";
+                                echo "<td>".$courseno."</td>"; 
+                                echo "<td>".$desctitle."</td>";
+                                echo "<td>".$units."</td>";
+                                echo "<td>
+                                    <th><span class='done'><input type='checkbox' class='done' />Done</th>
+                                    </td>";
+                                echo "<td>
+                                    <th><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</th>
+                                    </td>";
+                                echo "</tr>";
+                                }
+                              ?>
+                    </tbody>
+                        
+                    <?php
+                        $id= $_SESSION['username'];
+                        $con = mysqli_connect('localhost', 'root', '');
+                        mysqli_select_db($con, 'pre_enrollment');
+
+                        $results_per_page = 40;
+
+                        $s = "select curriculum from students where id_number='$id'";
+                        $sl = mysqli_query($con, $s);
+                        while ($rows = mysqli_fetch_array($sl)){
+                            $cur = $rows['curriculum'];
+                        }
+                        $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' and subyear = '3'";
+                        $result = mysqli_query($con,$sql);
+                        $number_of_results = mysqli_num_rows($result);
+                        $number_of_pages = ceil($number_of_results/$results_per_page);
+
+                        if (!isset($_GET['page'])){
+                            $page = 1;
+                        } else {
+                            $page = $_GET['page'];
+                        }
+
+                        $this_page_result = ($page - 1) * $results_per_page;
+
+                        $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' and subyear = '3'";
+                        $result = mysqli_query($con, $sql);
+                        ?>
+    
+                        <thead class="dept-name">
+                        <tr>
+                          <th colspan="10"><span></span><span class="name">Third Year - First Semester</span></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>Course Number</th>
+                          <th>Descriptive Title</th>
+                          <th>Units</th>
+                        </tr>
+                      </tbody>
+                       
+                      <tbody class="dept-detail">
+                               <?php
+                            $con = mysqli_connect('localhost', 'root', '');
+                            mysqli_select_db($con, 'pre_enrollment');
+                            $id= $_SESSION['username'];
+                                while ($row = mysqli_fetch_array($result)) {
+                                include_once 'classes/subjectsWithStudents.php';
+                                $courseno = $row['Course Number'];
+                                $desctitle = $row['Descriptive Title'];
+                                $units =  $row['Units'];
+                                
+                                echo "<tr>";
+                                echo "<td>".$courseno."</td>"; 
+                                echo "<td>".$desctitle."</td>";
+                                echo "<td>".$units."</td>";
+                                echo "<td>
+                                    <th><span class='done'><input type='checkbox' class='done' />Done</th>
+                                    </td>";
+                                echo "<td>
+                                    <th><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</th>
+                                    </td>";
+                                echo "</tr>";
+                                }
+                              ?>
+                    </tbody>
+                        
+                    <?php
+                        $id= $_SESSION['username'];
+                        $con = mysqli_connect('localhost', 'root', '');
+                        mysqli_select_db($con, 'pre_enrollment');
+
+                        $results_per_page = 40;
+
+                        $s = "select curriculum from students where id_number='$id'";
+                        $sl = mysqli_query($con, $s);
+                        while ($rows = mysqli_fetch_array($sl)){
+                            $cur = $rows['curriculum'];
+                        }
+                        $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Second' and subyear = '3'";
+                        $result = mysqli_query($con,$sql);
+                        $number_of_results = mysqli_num_rows($result);
+                        $number_of_pages = ceil($number_of_results/$results_per_page);
+
+                        if (!isset($_GET['page'])){
+                            $page = 1;
+                        } else {
+                            $page = $_GET['page'];
+                        }
+
+                        $this_page_result = ($page - 1) * $results_per_page;
+
+                        $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Second' and subyear = '3'";
+                        $result = mysqli_query($con, $sql);
+                        ?>
+    
+                        <thead class="dept-name">
+                        <tr>
+                          <th colspan="10"><span></span><span class="name">Third Year - Second Semester</span></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>Course Number</th>
+                          <th>Descriptive Title</th>
+                          <th>Units</th>
+                        </tr>
+                      </tbody>
+                       
+                      <tbody class="dept-detail">
+                               <?php
+                            $con = mysqli_connect('localhost', 'root', '');
+                            mysqli_select_db($con, 'pre_enrollment');
+                            $id= $_SESSION['username'];
+                                while ($row = mysqli_fetch_array($result)) {
+                                include_once 'classes/subjectsWithStudents.php';
+                                $courseno = $row['Course Number'];
+                                $desctitle = $row['Descriptive Title'];
+                                $units =  $row['Units'];
+                                
+                                echo "<tr>";
+                                echo "<td>".$courseno."</td>"; 
+                                echo "<td>".$desctitle."</td>";
+                                echo "<td>".$units."</td>";
+                                echo "<td>
+                                    <th><span class='done'><input type='checkbox' class='done' />Done</th>
+                                    </td>";
+                                echo "<td>
+                                    <th><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</th>
+                                    </td>";
+                                echo "</tr>";
+                                }
+                              ?>
+                    </tbody>
+                        
+                    <?php
+                        $id= $_SESSION['username'];
+                        $con = mysqli_connect('localhost', 'root', '');
+                        mysqli_select_db($con, 'pre_enrollment');
+
+                        $results_per_page = 40;
+
+                        $s = "select curriculum from students where id_number='$id'";
+                        $sl = mysqli_query($con, $s);
+                        while ($rows = mysqli_fetch_array($sl)){
+                            $cur = $rows['curriculum'];
+                        }
+                        $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Short' and subyear = '3'";
+                        $result = mysqli_query($con,$sql);
+                        $number_of_results = mysqli_num_rows($result);
+                        $number_of_pages = ceil($number_of_results/$results_per_page);
+
+                        if (!isset($_GET['page'])){
+                            $page = 1;
+                        } else {
+                            $page = $_GET['page'];
+                        }
+
+                        $this_page_result = ($page - 1) * $results_per_page;
+
+                        $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Short' and subyear = '3'";
+                        $result = mysqli_query($con, $sql);
+                        ?>
+    
+                        <thead class="dept-name">
+                        <tr>
+                          <th colspan="10"><span></span><span class="name">Third Year - Short Term</span></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>Course Number</th>
+                          <th>Descriptive Title</th>
+                          <th>Units</th>
+                        </tr>
+                      </tbody>
+                       
+                      <tbody class="dept-detail">
+                               <?php
+                            $con = mysqli_connect('localhost', 'root', '');
+                            mysqli_select_db($con, 'pre_enrollment');
+                            $id= $_SESSION['username'];
+                                while ($row = mysqli_fetch_array($result)) {
+                                include_once 'classes/subjectsWithStudents.php';
+                                $courseno = $row['Course Number'];
+                                $desctitle = $row['Descriptive Title'];
+                                $units =  $row['Units'];
+                                
+                                echo "<tr>";
+                                echo "<td>".$courseno."</td>"; 
+                                echo "<td>".$desctitle."</td>";
+                                echo "<td>".$units."</td>";
+                                echo "<td>
+                                    <th><span class='done'><input type='checkbox' class='done' />Done</th>
+                                    </td>";
+                                echo "<td>
+                                    <th><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</th>
+                                    </td>";
+                                echo "</tr>";
+                                }
+                              ?>
+                      </tbody>
+                        
+                    <?php
+                        $id= $_SESSION['username'];
+                        $con = mysqli_connect('localhost', 'root', '');
+                        mysqli_select_db($con, 'pre_enrollment');
+
+                        $results_per_page = 40;
+
+                        $s = "select curriculum from students where id_number='$id'";
+                        $sl = mysqli_query($con, $s);
+                        while ($rows = mysqli_fetch_array($sl)){
+                            $cur = $rows['curriculum'];
+                        }
+                        $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' and subyear = '4'";
+                        $result = mysqli_query($con,$sql);
+                        $number_of_results = mysqli_num_rows($result);
+                        $number_of_pages = ceil($number_of_results/$results_per_page);
+
+                        if (!isset($_GET['page'])){
+                            $page = 1;
+                        } else {
+                            $page = $_GET['page'];
+                        }
+
+                        $this_page_result = ($page - 1) * $results_per_page;
+
+                        $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' and subyear = '4'";
+                        $result = mysqli_query($con, $sql);
+                        ?>
+    
+                        <thead class="dept-name">
+                        <tr>
+                          <th colspan="10"><span></span><span class="name">Fourth Year - First Semester</span></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>Course Number</th>
+                          <th>Descriptive Title</th>
+                          <th>Units</th>
+                        </tr>
+                      </tbody>
+                       
+                      <tbody class="dept-detail">
+                               <?php
+                            $con = mysqli_connect('localhost', 'root', '');
+                            mysqli_select_db($con, 'pre_enrollment');
+                            $id= $_SESSION['username'];
+                                while ($row = mysqli_fetch_array($result)) {
+                                include_once 'classes/subjectsWithStudents.php';
+                                $courseno = $row['Course Number'];
+                                $desctitle = $row['Descriptive Title'];
+                                $units =  $row['Units'];
+                                
+                                echo "<tr>";
+                                echo "<td>".$courseno."</td>"; 
+                                echo "<td>".$desctitle."</td>";
+                                echo "<td>".$units."</td>";
+                                echo "<td>
+                                    <th><span class='done'><input type='checkbox' class='done' />Done</th>
+                                    </td>";
+                                echo "<td>
+                                    <th><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</th>
+                                    </td>";
+                                echo "</tr>";
+                                }
+                              ?>
+                    </tbody>
+                        
+                    <?php
+                        $id= $_SESSION['username'];
+                        $con = mysqli_connect('localhost', 'root', '');
+                        mysqli_select_db($con, 'pre_enrollment');
+
+                        $results_per_page = 40;
+
+                        $s = "select curriculum from students where id_number='$id'";
+                        $sl = mysqli_query($con, $s);
+                        while ($rows = mysqli_fetch_array($sl)){
+                            $cur = $rows['curriculum'];
+                        }
+                        $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Second' and subyear = '4'";
+                        $result = mysqli_query($con,$sql);
+                        $number_of_results = mysqli_num_rows($result);
+                        $number_of_pages = ceil($number_of_results/$results_per_page);
+
+                        if (!isset($_GET['page'])){
+                            $page = 1;
+                        } else {
+                            $page = $_GET['page'];
+                        }
+
+                        $this_page_result = ($page - 1) * $results_per_page;
+
+                        $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Second' and subyear = '4'";
+                        $result = mysqli_query($con, $sql);
+                        ?>
+    
+                        <thead class="dept-name">
+                        <tr>
+                          <th colspan="10"><span></span><span class="name">Fourth Year - Second Semester</span></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>Course Number</th>
+                          <th>Descriptive Title</th>
+                          <th>Units</th>
+                        </tr>
+                      </tbody>
+                       
+                      <tbody class="dept-detail">
+                               <?php
+                            $con = mysqli_connect('localhost', 'root', '');
+                            mysqli_select_db($con, 'pre_enrollment');
+                            $id= $_SESSION['username'];
+                                while ($row = mysqli_fetch_array($result)) {
+                                include_once 'classes/subjectsWithStudents.php';
+                                $courseno = $row['Course Number'];
+                                $desctitle = $row['Descriptive Title'];
+                                $units =  $row['Units'];
+                                
+                                echo "<tr>";
+                                echo "<td>".$courseno."</td>"; 
+                                echo "<td>".$desctitle."</td>";
+                                echo "<td>".$units."</td>";
+                                echo "<td>
+                                    <th><span class='done'><input type='checkbox' class='done' />Done</th>
+                                    </td>";
+                                echo "<td>
+                                    <th><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</th>
+                                    </td>";
+                                echo "</tr>";
+                                }
+                              ?>
+                    </tbody>
+                        
+                    <?php
+                        $id= $_SESSION['username'];
+                        $con = mysqli_connect('localhost', 'root', '');
+                        mysqli_select_db($con, 'pre_enrollment');
+
+                        $results_per_page = 40;
+
+                        $s = "select curriculum from students where id_number='$id'";
+                        $sl = mysqli_query($con, $s);
+                        while ($rows = mysqli_fetch_array($sl)){
+                            $cur = $rows['curriculum'];
+                        }
+                        $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'Short' and subyear = '4'";
+                        $result = mysqli_query($con,$sql);
+                        $number_of_results = mysqli_num_rows($result);
+                        $number_of_pages = ceil($number_of_results/$results_per_page);
+
+                        if (!isset($_GET['page'])){
+                            $page = 1;
+                        } else {
+                            $page = $_GET['page'];
+                        }
+
+                        $this_page_result = ($page - 1) * $results_per_page;
+
+                        $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = '0' and subyear = '0'";
+                        $result = mysqli_query($con, $sql);
+                        ?>
+    
+                        <thead class="dept-name">
+                        <tr>
+                          <th colspan="10"><span></span><span class="name">Electives</span></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>Course Number</th>
+                          <th>Descriptive Title</th>
+                          <th>Units</th>
+                        </tr>
+                      </tbody>
+                       
+                      <tbody class="dept-detail">
+                               <?php
+                            $con = mysqli_connect('localhost', 'root', '');
+                            mysqli_select_db($con, 'pre_enrollment');
+                            $id= $_SESSION['username'];
+                                while ($row = mysqli_fetch_array($result)) {
+                                include_once 'classes/subjectsWithStudents.php';
+                                $courseno = $row['Course Number'];
+                                $desctitle = $row['Descriptive Title'];
+                                $units =  $row['Units'];
+                                
+                                echo "<tr>";
+                                echo "<td>".$courseno."</td>"; 
+                                echo "<td>".$desctitle."</td>";
+                                echo "<td>".$units."</td>";
+                                echo "<td>
+                                    <th><span class='done'><input type='checkbox' class='done' />Done</th>
+                                    </td>";
+                                echo "<td>
+                                    <th><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</th>
+                                    </td>";
+                                echo "</tr>";
+                                }
+                              ?>
+                    </tbody>
+            </table>
+          </div>
+    </div>
+
+
         <script>
             function myFunction(){
                 document.getElementById("myForm").reset();
@@ -1072,22 +922,9 @@
             } 
         </script>
     
-        <script>   
-            function addClassCheck(element){
-                if(element.checked){
-                    element.classList.add("marked");
-                }else{
-                    element.classList.remove("marked");
-                }
-                if(document.getElementsByClassName("marked").length>1){
-                  alert("Please select only one check box");
-                    element.checked=false;
-                    element.classList.remove("marked");
-                }
-            }
-        </script>
    
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/checkbox.js"></script>
     </body>
 </html>

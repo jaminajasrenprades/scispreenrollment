@@ -5,10 +5,6 @@
     }
 }
 
-.table th{
-    background-color: #a9aeb2;
-}
-
 #table-wrapper{
     position: relative;
 }
@@ -22,8 +18,6 @@
 #table-wrapper table{
     width: 100%;
 }
-
-
 
 
 

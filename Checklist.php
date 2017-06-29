@@ -64,40 +64,39 @@
 <!--/ nav-->
        
       <div class="container-fluid">
-          <div class="col-md-10 col-md-offset-4"> 
-            <?php
-            $id= $_SESSION['username'];
-            $con = mysqli_connect('localhost', 'root', '');
-            mysqli_select_db($con, 'pre_enrollment');
+          <div class="col-md-10 col-md-offset-1"> 
+              <table class="table table-bordered" id="checklistInfo" style="margin-top:15%">
+                <?php
+                $id= $_SESSION['username'];
+                $con = mysqli_connect('localhost', 'root', '');
+                mysqli_select_db($con, 'pre_enrollment');
 
-            $results_per_page = 40;
-            
-            $s = "select curriculum from students where id_number='$id'";
-            $sl = mysqli_query($con, $s);
-            while ($rows = mysqli_fetch_array($sl)){
-                $cur = $rows['curriculum'];
-            }
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' and subyear = '1'";
-            $result = mysqli_query($con,$sql);
-            $number_of_results = mysqli_num_rows($result);
-            $number_of_pages = ceil($number_of_results/$results_per_page);
+                $results_per_page = 40;
 
-            if (!isset($_GET['page'])){
-                $page = 1;
-            } else {
-                $page = $_GET['page'];
-            }
+                $s = "select curriculum from students where id_number='$id'";
+                $sl = mysqli_query($con, $s);
+                while ($rows = mysqli_fetch_array($sl)){
+                    $cur = $rows['curriculum'];
+                }
+                $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' and subyear = '1'";
+                $result = mysqli_query($con,$sql);
+                $number_of_results = mysqli_num_rows($result);
+                $number_of_pages = ceil($number_of_results/$results_per_page);
 
-            $this_page_result = ($page - 1) * $results_per_page;
+                if (!isset($_GET['page'])){
+                    $page = 1;
+                } else {
+                    $page = $_GET['page'];
+                }
 
-            $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' and subyear = '1'";
-            $result = mysqli_query($con, $sql);
-            ?>
+                $this_page_result = ($page - 1) * $results_per_page;
 
-                    <table id="checklistInfo" style="margin-top:15%">
-                        <thead class="dept-name">
+                $sql = "SELECT subjects.coursenumber as 'Course Number', subjects.destitle as 'Descriptive Title', subjects.units as 'Units' FROM checklist INNER JOIN subjects ON subjects.type = checklist.type AND subjects.coursenumber = checklist.coursenumber NATURAL JOIN curriculum_checklist NATURAL JOIN students where id_number='$id' and curriculum = '$cur' and term = 'First' and subyear = '1'";
+                $result = mysqli_query($con, $sql);
+                ?>
+                     <thead class="dept-name">
                         <tr>
-                          <th colspan="10"><span></span><span class="name">First Year - First Semester</span></th>
+                          <th colspan="5" style="background-color: #ffffff"><span class="name">First Year - First Semester</span></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -105,6 +104,7 @@
                           <th>Course Number</th>
                           <th>Descriptive Title</th>
                           <th>Units</th>
+                          <th colspan="2">Status</th>
                         </tr>
                       </tbody>
                        
@@ -123,12 +123,10 @@
                                 echo "<td>".$courseno."</td>"; 
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
-                                echo "<td>
-                                    <th><span class='done'><input type='checkbox' class='done' />Done</th>
-                                    </td>";
-                                echo "<td>
-                                    <th><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</th>
-                                    </td>";
+                                echo "
+                                    <td><span class='done'><input type='checkbox' class='done' />Done</td>";
+                                echo "
+                                    <td><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</td>";
                                 echo "</tr>";
                                 }
                               ?>
@@ -165,7 +163,7 @@
                     
                         <thead class="dept-name">
                         <tr>
-                          <th colspan="10"><span></span><span class="name">First Year - Second Semester</span></th>
+                          <th colspan="5" style="background-color: #ffffff"><span class="name">First Year - Second Semester</span></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -173,6 +171,7 @@
                           <th>Course Number</th>
                           <th>Descriptive Title</th>
                           <th>Units</th>
+                          <th colspan="2">Status</th>
                         </tr>
                       </tbody>
                        
@@ -192,10 +191,10 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <th><span class='done'><input type='checkbox' class='done' />Done</th>
+                                    <span class='done'><input type='checkbox' class='done' />Done
                                     </td>";
                                 echo "<td>
-                                    <th><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</th>
+                                    <span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled
                                     </td>";
                                 echo "</tr>";
                                 }
@@ -233,7 +232,7 @@
     
                      <thead class="dept-name">
                         <tr>
-                          <th colspan="10"><span></span><span class="name">First Year - Short Term</span></th>
+                          <th colspan="5" style="background-color: #ffffff"><span class="name">First Year - Short Term</span></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -241,6 +240,7 @@
                           <th>Course Number</th>
                           <th>Descriptive Title</th>
                           <th>Units</th>
+                          <th colspan="2">Status</th>
                         </tr>
                       </tbody>
                        
@@ -260,10 +260,10 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <th><span class='done'><input type='checkbox' class='done' />Done</th>
+                                    <span class='done'><input type='checkbox' class='done' />Done
                                     </td>";
                                 echo "<td>
-                                    <th><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</th>
+                                    <span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled
                                     </td>";
                                 echo "</tr>";
                                 }
@@ -301,7 +301,7 @@
     
                         <thead class="dept-name">
                         <tr>
-                          <th colspan="10"><span></span><span class="name">Second Year - First Semester</span></th>
+                          <th colspan="5" style="background-color: #ffffff"><span class="name">Second Year - First Semester</span></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -309,6 +309,7 @@
                           <th>Course Number</th>
                           <th>Descriptive Title</th>
                           <th>Units</th>
+                          <th colspan="2">Status</th>
                         </tr>
                       </tbody>
                        
@@ -328,10 +329,10 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <th><span class='done'><input type='checkbox' class='done' />Done</th>
+                                    <span class='done'><input type='checkbox' class='done' />Done
                                     </td>";
                                 echo "<td>
-                                    <th><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</th>
+                                    <span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled
                                     </td>";
                                 echo "</tr>";
                                 }
@@ -369,7 +370,7 @@
     
                      <thead class="dept-name">
                         <tr>
-                          <th colspan="10"><span></span><span class="name">Second Year - Second Semester</span></th>
+                          <th colspan="5" style="background-color: #ffffff"><span class="name">Second Year - Second Semester</span></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -377,6 +378,7 @@
                           <th>Course Number</th>
                           <th>Descriptive Title</th>
                           <th>Units</th>
+                          <th colspan="2">Status</th>
                         </tr>
                       </tbody>
                        
@@ -396,10 +398,10 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <th><span class='done'><input type='checkbox' class='done' />Done</th>
+                                    <span class='done'><input type='checkbox' class='done' />Done
                                     </td>";
                                 echo "<td>
-                                    <th><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</th>
+                                    <span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled
                                     </td>";
                                 echo "</tr>";
                                 }
@@ -437,7 +439,7 @@
     
                         <thead class="dept-name">
                         <tr>
-                          <th colspan="10"><span></span><span class="name">Second Year - Short Term</span></th>
+                          <th colspan="5" style="background-color: #ffffff"><span class="name">Second Year - Short Term</span></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -445,6 +447,7 @@
                           <th>Course Number</th>
                           <th>Descriptive Title</th>
                           <th>Units</th>
+                          <th colspan="2">Status</th>
                         </tr>
                       </tbody>
                        
@@ -464,10 +467,10 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <th><span class='done'><input type='checkbox' class='done' />Done</th>
+                                    <span class='done'><input type='checkbox' class='done' />Done
                                     </td>";
                                 echo "<td>
-                                    <th><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</th>
+                                    <span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled
                                     </td>";
                                 echo "</tr>";
                                 }
@@ -505,7 +508,7 @@
     
                         <thead class="dept-name">
                         <tr>
-                          <th colspan="10"><span></span><span class="name">Third Year - First Semester</span></th>
+                          <th colspan="5" style="background-color: #ffffff"><span class="name">Third Year - First Semester</span></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -513,6 +516,7 @@
                           <th>Course Number</th>
                           <th>Descriptive Title</th>
                           <th>Units</th>
+                          <th colspan="2">Status</th>
                         </tr>
                       </tbody>
                        
@@ -532,10 +536,10 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <th><span class='done'><input type='checkbox' class='done' />Done</th>
+                                    <span class='done'><input type='checkbox' class='done' />Done
                                     </td>";
                                 echo "<td>
-                                    <th><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</th>
+                                    <span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled
                                     </td>";
                                 echo "</tr>";
                                 }
@@ -573,7 +577,7 @@
     
                         <thead class="dept-name">
                         <tr>
-                          <th colspan="10"><span></span><span class="name">Third Year - Second Semester</span></th>
+                          <th colspan="5" style="background-color: #ffffff"><span class="name">Third Year - Second Semester</span></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -581,6 +585,7 @@
                           <th>Course Number</th>
                           <th>Descriptive Title</th>
                           <th>Units</th>
+                          <th colspan="2">Status</th>
                         </tr>
                       </tbody>
                        
@@ -600,10 +605,10 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <th><span class='done'><input type='checkbox' class='done' />Done</th>
+                                    <span class='done'><input type='checkbox' class='done' />Done
                                     </td>";
                                 echo "<td>
-                                    <th><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</th>
+                                    <span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled
                                     </td>";
                                 echo "</tr>";
                                 }
@@ -641,7 +646,7 @@
     
                         <thead class="dept-name">
                         <tr>
-                          <th colspan="10"><span></span><span class="name">Third Year - Short Term</span></th>
+                          <th colspan="5" style="background-color: #ffffff"><span class="name">Third Year - Short Term</span></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -649,6 +654,7 @@
                           <th>Course Number</th>
                           <th>Descriptive Title</th>
                           <th>Units</th>
+                            <th colspan="2">Status</th>
                         </tr>
                       </tbody>
                        
@@ -668,10 +674,10 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <th><span class='done'><input type='checkbox' class='done' />Done</th>
+                                    <span class='done'><input type='checkbox' class='done' />Done
                                     </td>";
                                 echo "<td>
-                                    <th><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</th>
+                                    <span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled
                                     </td>";
                                 echo "</tr>";
                                 }
@@ -709,7 +715,7 @@
     
                         <thead class="dept-name">
                         <tr>
-                          <th colspan="10"><span></span><span class="name">Fourth Year - First Semester</span></th>
+                          <th colspan="5" style="background-color: #ffffff"><span class="name">Fourth Year - First Semester</span></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -717,6 +723,7 @@
                           <th>Course Number</th>
                           <th>Descriptive Title</th>
                           <th>Units</th>
+                          <th colspan="2">Status</th>
                         </tr>
                       </tbody>
                        
@@ -736,10 +743,10 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <th><span class='done'><input type='checkbox' class='done' />Done</th>
+                                    <span class='done'><input type='checkbox' class='done' />Done
                                     </td>";
                                 echo "<td>
-                                    <th><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</th>
+                                    <span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled
                                     </td>";
                                 echo "</tr>";
                                 }
@@ -777,7 +784,7 @@
     
                         <thead class="dept-name">
                         <tr>
-                          <th colspan="10"><span></span><span class="name">Fourth Year - Second Semester</span></th>
+                          <th colspan="5" style="background-color: #ffffff"><span class="name">Fourth Year - Second Semester</span></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -785,6 +792,7 @@
                           <th>Course Number</th>
                           <th>Descriptive Title</th>
                           <th>Units</th>
+                          <th colspan="2">Status</th>
                         </tr>
                       </tbody>
                        
@@ -804,10 +812,10 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <th><span class='done'><input type='checkbox' class='done' />Done</th>
+                                    <span class='done'><input type='checkbox' class='done' />Done
                                     </td>";
                                 echo "<td>
-                                    <th><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</th>
+                                    <span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled
                                     </td>";
                                 echo "</tr>";
                                 }
@@ -845,7 +853,7 @@
     
                         <thead class="dept-name">
                         <tr>
-                          <th colspan="10"><span></span><span class="name">Electives</span></th>
+                          <th colspan="5" style="background-color: #ffffff"><span class="name">Electives</span></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -853,6 +861,7 @@
                           <th>Course Number</th>
                           <th>Descriptive Title</th>
                           <th>Units</th>
+                          <th colspan="2" style="align:center">Status</th>
                         </tr>
                       </tbody>
                        
@@ -872,10 +881,10 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <th><span class='done'><input type='checkbox' class='done' />Done</th>
+                                    <span class='done'><input type='checkbox' class='done' />Done
                                     </td>";
                                 echo "<td>
-                                    <th><span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled</th>
+                                    <span class='enrolled'><input type='checkbox' class='enrolled' />Currently Enrolled
                                     </td>";
                                 echo "</tr>";
                                 }
@@ -883,6 +892,13 @@
                     </tbody>
             </table>
           </div>
+          
+        <div class="container">
+          <form action="Updated_Checklist.php" method="post">
+            <input type="submit" role="button" class="btn btn-info" value="Submit Button">
+          </form>
+        </div>
+            
     </div>
 
 

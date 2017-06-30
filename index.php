@@ -12,6 +12,12 @@
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/login.css">
+        <link rel="stylesheet" href="css/login.css">
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+        <!-- FontAwesome -->
+        <link rel="stylesheet" href="css/font-awesome.min.css">
 </head>
 <body>
 
@@ -230,7 +236,6 @@
                     }
                 }
             }
-
     }
 
   }
@@ -256,7 +261,12 @@
             <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password">
           </div>
           <hr class="colorgraph">
-          <div class="row">
+            <!-- Add login URL in index.php -->
+            <a class="btn btn-block btn-social btn-google-plus" href="#">
+            <i class="fa fa-google-plus"></i>
+            </a>
+            
+            <div class="row">
                 <div>
                   <input type="submit" name="submit" value="Login" class="btn btn-success btn-block">
                 </div>

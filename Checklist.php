@@ -32,20 +32,35 @@
 <body>
 <!--nav-->
 <nav class="nav navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-       <div class="col-md-12">
-          <div class="navbar-header">
-             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mynavbar" aria-expanded="false" aria-controls="navbar">
-             <span class="fa fa-bars"></span>
-             </button>
-                
-         <div class="collapse navbar-collapse navbar-left borderXwidth" id="mynavbar">
-            <ul class="nav navbar-nav">
-                <li role="presentation"><a href="Pre-enrollment.php" style="font-size: 110%; font-family: Roboto">Home</a></li>
-                <li role="presentation" class="active"><a href="Checklist.php" style="font-size: 110%; font-family: Roboto">Checklist</a></li>
-                <li role="presentation"><a href="OfferedSubjects.php" style="font-size: 110%; font-family: Roboto">Offered Subjects</a></li>
-                <li role="presentation"><a href="Petitions.php" style="font-size: 110%; font-family: Roboto">Petitions</a></li>
-                <li role="presentation"><a href="Overload.php" style="font-size: 110%; font-family: Roboto">Overload</a></li>
+     <div class="container-fluid">
+         <div class="col-md-12">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mynavbar" aria-expanded="false" aria-controls="navbar">
+                <span class="fa fa-bars"></span>
+                </button>
+
+                      <div class="collapse navbar-collapse navbar-left borderXwidth" id="mynavbar">
+                        <ul class="nav navbar-nav">
+                            <li role="presentation">
+                              <a href="Pre-enrollment.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-home"></i> Home <span class="arrow"></span></a>
+                            </li>
+
+                            <li role="presentation">
+                              <a href="Checklist.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-th-list"></i> Checklist <span class="arrow"></span></a>
+                            </li>
+
+
+                            <li role="presentation">
+                              <a href="Pre-enrollment.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-columns"></i> Offered Subjects <span class="arrow"></span></a>
+                            </li>  
+
+                            <li role="presentation">
+                              <a href="Checklist.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-files-o"></i> Petitions <span class="arrow"></span></a>
+                            </li>
+
+                             <li role="presentation">
+                              <a href="Checklist.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-stack-overflow"></i> Overload <span class="arrow"></span></a>
+                             </li>
                 
          <p style = "position: absolute; right:7%; margin-top:.4%; font-size: 130%; font-family: Roboto"><b>WELCOME 
             <?php 
@@ -913,7 +928,7 @@
             
             if(isset($_POST['submit'])) {
                 for ($i=0; $i<sizeof($checkBox); $i++) {
-                    $ery_1="SELECT * FROM checklist WHERE check
+                    $ery_1="SELECT * FROM checklist";
                     $ery="INSERT INTO updated_checklist (status) VALUES ('" . $checkbox . "')";
                     $ery .= "('" . $checkBox[$i] . "'),";
                     $ery = rtrim($ery,',');

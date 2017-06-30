@@ -176,19 +176,16 @@
 
             <?php
             if(isset($_POST['submit'])){
-                $selected_val = $_POST['sort'];  // Storing Selected Value In Variable
-              //  echo "You have selected:" .$selected_val;  // Displaying Selected Value
+                $selected_val = $_POST['sort'];
                 include 'dbcon.php';
-                $stmt = $pdo->query("SELECT DISTINCT subjects.coursenumber as 'Course No.', subjects.destitle as 'Descriptive Title', subjects.units as 'Units'
-                                 FROM subjects INNER JOIN checklist ON subjects.coursenumber = checklist.coursenumber where term = '$selected_val'");
-            
+                if ($selected_val == "All"){
+                    $stmt = $pdo->query("SELECT subjects.coursenumber as 'Course No.', subjects.destitle as 'Descriptive Title', enr_stat.term as 'Term', subjects.units as 'Units' FROM subjects INNER JOIN enr_stat ON subjects.coursenumber = enr_stat.coursenumber");
+                } else {
+                    $stmt = $pdo->query("SELECT subjects.coursenumber as 'Course No.', subjects.destitle as 'Descriptive Title', enr_stat.term as 'Term', subjects.units as 'Units' FROM subjects INNER JOIN enr_stat ON subjects.coursenumber = enr_stat.coursenumber where term = '$selected_val'");
+                }    
             } else {
-                //$te=$selected_val;
             include 'dbcon.php';
-            $stmt = $pdo->query("SELECT DISTINCT subjects.coursenumber AS 'Course No.', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', checklist.term AS 'Term', enr_stat.number_of_students AS 'Number of Students' FROM subjects INNER JOIN
-            checklist ON subjects.coursenumber = checklist.coursenumber INNER JOIN
-            enr_stat ON enr_stat.coursenumber = checklist.coursenumber WHERE
-            enr_stat.number_of_students > '0'");
+            $stmt = $pdo->query("SELECT subjects.coursenumber as 'Course No.', subjects.destitle as 'Descriptive Title', enr_stat.term as 'Term', subjects.units as 'Units' FROM subjects INNER JOIN enr_stat ON subjects.coursenumber = enr_stat.coursenumber");
             
             }
             ?>
@@ -202,7 +199,6 @@
                               <th>Descriptive Title</th>
                               <th>Term</th>
                               <th>Units</th>
-                              <th>Number of Students</th>
                               <th></th>
                           </tr>
 
@@ -215,12 +211,10 @@
                                   echo "<td>".$row['Descriptive Title']."</td>";
                                   echo "<td><center>".$row['Term']."</center></td>";
                                   echo "<td><center>".$row['Units']."</center></td>";
-                                  echo "<td><center>".$row['Number of Students']."</center></td>";
                                   echo "<input type='hidden' name='CourseNo' value='".$row['Course No.']."'/>";
                                   echo "<input type='hidden' name='descrp' value='".$row['Descriptive Title']."'/>";
                                   echo "<input type='hidden' name='term' value='".$row['Term']."'/>";
                                   echo "<input type='hidden' name='units' value='".$row['Units']."'/>";
-                                  echo "<input type='hidden' name='numberofstudents' value='".$row['Number of Students']."'/>";
                                   echo "
                                   <td>
                                   

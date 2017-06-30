@@ -38,15 +38,15 @@
 
 
                             <li role="presentation">
-                              <a href="Pre-enrollment.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-columns"></i> Offered Subjects <span class="arrow"></span></a>
+                              <a href="OfferedSubjects.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-columns"></i> Offered Subjects <span class="arrow"></span></a>
                             </li>  
 
                             <li role="presentation">
-                              <a href="Checklist.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-files-o"></i> Petitions <span class="arrow"></span></a>
+                              <a href="Petitions.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-files-o"></i> Petitions <span class="arrow"></span></a>
                             </li>
 
                              <li role="presentation">
-                              <a href="Checklist.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-stack-overflow"></i> Overload <span class="arrow"></span></a>
+                              <a href="Overload.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-stack-overflow"></i> Overload <span class="arrow"></span></a>
                              </li>
                 
                 <p style = "position: absolute; right:7%; margin-top:.4%; font-size: 130%; font-family: Roboto"><b> WELCOME <?php 

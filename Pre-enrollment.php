@@ -39,15 +39,15 @@
 
 
                             <li role="presentation">
-                              <a href="Pre-enrollment.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-columns"></i> Offered Subjects <span class="arrow"></span></a>
+                              <a href="OfferedSubjects.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-columns"></i> Offered Subjects <span class="arrow"></span></a>
                             </li>  
 
                             <li role="presentation">
-                              <a href="Checklist.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-files-o"></i> Petitions <span class="arrow"></span></a>
+                              <a href="Petitions.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-files-o"></i> Petitions <span class="arrow"></span></a>
                             </li>
 
                              <li role="presentation">
-                              <a href="Checklist.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-stack-overflow"></i> Overload <span class="arrow"></span></a>
+                              <a href="Overload.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-stack-overflow"></i> Overload <span class="arrow"></span></a>
                              </li>
 
                          <p style = "position: absolute; right:7%; margin-top:.4%; font-size: 130%; font-family: Roboto"><b> WELCOME <?php 
@@ -95,7 +95,7 @@
                     
                 </div>
                 <div class="col-md-2" style="margin-top:10%; left:30%;">
-                    <input class = 'btn btn-default' type='submit' name = 'submit' value='Apply'></input>
+                    <input class = 'btn btn-default' type='submit' name = 'submit' value='Apply'/>
                     <button class="btn btn-default" type="button" value="reset"><a href = "Pre-enrollment.php">Reset</a></button>
                 </div>
                 </form>
@@ -161,7 +161,7 @@
                     <div class="input-group">
                         <input type="text" id="myInput" onkeyup="filterData()" class="form-control" placeholder="Search for...">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" value="reset"><a href = "Pre-enrollment.php">Reset</a></button>
+                            <button class="btn btn-default" type="button" value="reset"><a href="Pre-enrollment.php">Reset</a></button>
                         </span>
                     </div>
                     </form>
@@ -175,25 +175,17 @@
 
             <?php
             if(isset($_POST['submit'])){
-                $selected_val = $_POST['sort'];  // Storing Selected Value In Variable
-              //  echo "You have selected:" .$selected_val;  // Displaying Selected Value
+                $selected_val = $_POST['sort'];
                 include 'dbcon.php';
                 if ($selected_val == "All"){
-                    $stmt = $pdo->query("SELECT subjects.coursenumber as 'Course No.', subjects.destitle as 'Descriptive Title', enr_stat.term as 'Term', subjects.units as 'Units'
-                                 FROM subjects INNER JOIN enr_stat ON subjects.coursenumber = enr_stat.coursenumber");
-                    
+                    $stmt = $pdo->query("SELECT subjects.coursenumber as 'Course No.', subjects.destitle as 'Descriptive Title', enr_stat.term as 'Term', subjects.units as 'Units' FROM subjects INNER JOIN enr_stat ON subjects.coursenumber = enr_stat.coursenumber");
                 } else {
                     $stmt = $pdo->query("SELECT subjects.coursenumber as 'Course No.', subjects.destitle as 'Descriptive Title', enr_stat.term as 'Term', subjects.units as 'Units'
                                  FROM subjects INNER JOIN enr_stat ON subjects.coursenumber = enr_stat.coursenumber where term = '$selected_val'");
-            
-            
-                }
-                    
+                }    
             } else {
-                //$te=$selected_val;
             include 'dbcon.php';
-            $stmt = $pdo->query("SELECT subjects.coursenumber as 'Course No.', subjects.destitle as 'Descriptive Title', enr_stat.term as 'Term', subjects.units as 'Units'
-                                 FROM subjects INNER JOIN enr_stat ON subjects.coursenumber = enr_stat.coursenumber");
+            $stmt = $pdo->query("SELECT subjects.coursenumber as 'Course No.', subjects.destitle as 'Descriptive Title', enr_stat.term as 'Term', subjects.units as 'Units' FROM subjects INNER JOIN enr_stat ON subjects.coursenumber = enr_stat.coursenumber");
             
             }
             ?>

@@ -51,15 +51,15 @@
 
 
                             <li role="presentation">
-                              <a href="Pre-enrollment.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-columns"></i> Offered Subjects <span class="arrow"></span></a>
+                              <a href="OfferedSubjects.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-columns"></i> Offered Subjects <span class="arrow"></span></a>
                             </li>  
 
                             <li role="presentation">
-                              <a href="Checklist.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-files-o"></i> Petitions <span class="arrow"></span></a>
+                              <a href="Petitions.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-files-o"></i> Petitions <span class="arrow"></span></a>
                             </li>
 
                              <li role="presentation">
-                              <a href="Checklist.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-stack-overflow"></i> Overload <span class="arrow"></span></a>
+                              <a href="Overload.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-stack-overflow"></i> Overload <span class="arrow"></span></a>
                              </li>
                 
          <p style = "position: absolute; right:7%; margin-top:.4%; font-size: 130%; font-family: Roboto"><b>WELCOME 
@@ -906,11 +906,9 @@
               <br>
             <div class="form-group">
                 <div class="container-fluid">
-                    <div class="row">
                         <label class="col-sm-3 control-label">&nbsp;</label>
                         <div class="col-sm-8">
-                            <input type="submit" name="add" class="btn btn-sm btn-primary" value="Update Checklist" style="margin-left:80%";><a href="Updated_Checklist.php"></a>
-                           <a href="Checklist.php" class="btn btn-sm btn-warning">Cancel</a>
+                           <a href="Checklist.php" class="btn btn-sm btn-info" style="margin-left:90%">Go Back</a>
                            <?php
                             if(isset($_POST['submit'])){
                             if(!empty($_POST['checkbox'])){
@@ -918,7 +916,7 @@
                                     echo $selected."<br>";
                                 }
                             }
-                            }
+                            } 
                             ?>
                        </div>
                     </div>

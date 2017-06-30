@@ -38,15 +38,15 @@
 
 
                             <li role="presentation">
-                              <a href="Pre-enrollment.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-columns"></i> Offered Subjects <span class="arrow"></span></a>
+                              <a href="OfferedSubjects.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-columns"></i> Offered Subjects <span class="arrow"></span></a>
                             </li>  
 
                             <li role="presentation">
-                              <a href="Checklist.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-files-o"></i> Petitions <span class="arrow"></span></a>
+                              <a href="Petitions.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-files-o"></i> Petitions <span class="arrow"></span></a>
                             </li>
 
                              <li role="presentation">
-                              <a href="Checklist.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-stack-overflow"></i> Overload <span class="arrow"></span></a>
+                              <a href="Overload.php" style="font-size: 110%; font-family: Roboto"><i class="fa fa-stack-overflow"></i> Overload <span class="arrow"></span></a>
                              </li>
                 
                 <p style = "position: absolute; right:7%; margin-top:.4%; font-size: 130%; font-family: Roboto"><b> WELCOME <?php 
@@ -79,7 +79,7 @@
     </div>
 </nav>
     
-<body>
+    <body>
         <div class="container-fluid">
             <div class="row">    <!--RED-->
                 <div class="col-md-4 col-md-offset-3" style="margin-top:10%">
@@ -93,14 +93,14 @@
                     
                 </div>
                 <div class="col-md-2" style="margin-top:10%; left:30%;">
-                    <input class = 'btn btn-default' type='submit' name = 'submit' value='Apply'/>
-                    <button class="btn btn-default" type="button" value="reset"><a href = "Pre-enrollment.php">Reset</a></button>
+                    <input class = 'btn btn-default' type='submit' name='submit' value='Apply'/>
+                    <button class="btn btn-default" type="button" value="reset"><a href="Petitions.php">Reset</a></button>
                 </div>
                 </form>
          </div>
     
          <div class="row">
-                <?php
+               <?php
                 $totalunits = "";
                  
                 $last_name  = "";
@@ -124,7 +124,7 @@
                     $course     = ($result[0]['course']);
                     $year       = ($result[0]['year']);
                     
-                    $q = $pdo->query("SELECT sum(units) AS stotal FROM subjects natural join pre_enroll WHERE id_number = '$idnumber'");
+                    $q = $pdo->query("SELECT DISTINCT sum(units) AS stotal FROM subjects natural join pre_enroll WHERE id_number = '$idnumber'");
                     $c = $q->rowCount();
                     if($c != 0){
                     $cs = $q->fetchAll(PDO::FETCH_ASSOC);
@@ -149,7 +149,8 @@
                     echo"</p>
                     </div>";
                     }          
-                  ?>          
+                ?>  
+
             </div>
             
             <br>
@@ -177,19 +178,16 @@
 
             <?php
             if(isset($_POST['submit'])){
-                $selected_val = $_POST['sort'];  // Storing Selected Value In Variable
-              //  echo "You have selected:" .$selected_val;  // Displaying Selected Value
+                $selected_val = $_POST['sort'];
                 include 'dbcon.php';
-                $stmt = $pdo->query("SELECT DISTINCT subjects.coursenumber as 'Course No.', subjects.destitle as 'Descriptive Title', subjects.units as 'Units'
-                                 FROM subjects INNER JOIN checklist ON subjects.coursenumber = checklist.coursenumber where term = '$selected_val'");
-            
+                if ($selected_val == "All"){
+                    $stmt = $pdo->query("SELECT subjects.coursenumber as 'Course No.', subjects.destitle as 'Descriptive Title', enr_stat.term as 'Term', subjects.units as 'Units' FROM subjects INNER JOIN enr_stat ON subjects.coursenumber = enr_stat.coursenumber");
+                } else {
+                    $stmt = $pdo->query("SELECT subjects.coursenumber as 'Course No.', subjects.destitle as 'Descriptive Title', enr_stat.term as 'Term', subjects.units as 'Units' FROM subjects INNER JOIN enr_stat ON subjects.coursenumber = enr_stat.coursenumber where term = '$selected_val'");
+                }    
             } else {
-                //$te=$selected_val;
             include 'dbcon.php';
-            $stmt = $pdo->query("SELECT DISTINCT subjects.coursenumber AS 'Course No.', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', checklist.term AS 'Term', enr_stat.number_of_students AS 'Number of Students' FROM subjects INNER JOIN
-            checklist ON subjects.coursenumber = checklist.coursenumber INNER JOIN
-            enr_stat ON enr_stat.coursenumber = checklist.coursenumber WHERE
-            enr_stat.number_of_students > '0'");
+            $stmt = $pdo->query("SELECT subjects.coursenumber as 'Course No.', subjects.destitle as 'Descriptive Title', enr_stat.term as 'Term', subjects.units as 'Units' FROM subjects INNER JOIN enr_stat ON subjects.coursenumber = enr_stat.coursenumber");
             
             }
             ?>
@@ -211,11 +209,11 @@
                           $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                           foreach ($results as $row) {
                                   echo "<tr>";
-                                  echo "<td><center>".$row['Course No.']."</center></td>";
+                                  echo "<td>".$row['Course No.']."</td>";
                                   echo "<td>".$row['Descriptive Title']."</td>";
-                                  echo "<td><center>".$row['Term']."</center></td>";
-                                  echo "<td><center>".$row['Units']."</center></td>";
-                                  echo "<td><center>".$row['Number of Students']."</center></td>";
+                                  echo "<td>".$row['Term']."</td>";
+                                  echo "<td>".$row['Units']."</td>";
+                                  echo "<td>".$row['Number of Students']."</td>";
                                   echo "<input type='hidden' name='CourseNo' value='".$row['Course No.']."'/>";
                                   echo "<input type='hidden' name='descrp' value='".$row['Descriptive Title']."'/>";
                                   echo "<input type='hidden' name='term' value='".$row['Term']."'/>";
@@ -242,6 +240,7 @@
         							    <th>Descriptive Title</th>
         							    <th>Term</th>
         							    <th>Units</th>
+        							    <th>Number of Students</th>
                                         <th></th>
         						    </tr>
                            <?php 
@@ -262,10 +261,11 @@
                                 $units = $rows['units'];
                                                                 
                                 echo "<tr>";
-                                echo "<td><center>".$course."</center></td>";
-                                echo "<td>".$desctitle."</center></td>";
-                                echo "<td><center>".$term."</center></td>";
-                                echo "<td><center>".$units."</center></td>";
+                                echo "<td>".$course."</td>";
+                                echo "<td>".$desctitle."</td>";
+                                echo "<td>".$term."</td>";
+                                echo "<td>".$units."</td>";
+                                echo "<td>".$numberofstudents."</td>";
                                 echo "<td>
                                 <button onclick=clearData(this);deleteRow(this); class='btn btn-default btn-sm'>
                                 <span class='glyphicon glyphicon-remove' aria-hidden='true'></span>
@@ -291,8 +291,7 @@
 
             $results_per_page = 40;
             
-            $sql = "SELECT subjects.coursenumber AS 'Course Number', subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units' FROM subjects  NATURAL JOIN pre_enroll NATURAL JOIN petitions  NATURAL JOIN students NATURAL JOIN curriculum_checklist NATURAL JOIN 
-            checklist NATURAL JOIN updated_checklist WHERE id_number = '$id'";
+            $sql = "SELECT subjects.coursenumber AS 'Course Number',subjects.destitle AS 'Descriptive Title', subjects.units AS 'Units', enr_stat.number_of_students AS 'Number of Students' FROM subjects NATURAL JOIN enr_stat NATURAL JOIN pre_enroll NATURAL JOIN petitions NATURAL JOIN students NATURAL JOIN curriculum_checklist NATURAL JOIN checklist NATURAL JOIN updated_checklist WHERE id_number = '$id'";
             $result = mysqli_query($con,$sql);
             $number_of_results = mysqli_num_rows($result);
             $number_of_pages = ceil($number_of_results/$results_per_page);

@@ -181,13 +181,13 @@
                 $selected_val = $_POST['sort'];
                 include 'dbcon.php';
                 if ($selected_val == "All"){
-                    $stmt = $pdo->query("SELECT subjects.coursenumber as 'Course No.', subjects.destitle as 'Descriptive Title', enr_stat.term as 'Term', subjects.units as 'Units' FROM subjects INNER JOIN enr_stat ON subjects.coursenumber = enr_stat.coursenumber");
+                    $stmt = $pdo->query("SELECT subjects.coursenumber as 'Course No.', subjects.destitle as 'Descriptive Title', enr_stat.term as 'Term', subjects.units as 'Units', enr_stat.number_of_students as 'Number of Students'FROM subjects INNER JOIN enr_stat ON subjects.coursenumber = enr_stat.coursenumber");
                 } else {
-                    $stmt = $pdo->query("SELECT subjects.coursenumber as 'Course No.', subjects.destitle as 'Descriptive Title', enr_stat.term as 'Term', subjects.units as 'Units' FROM subjects INNER JOIN enr_stat ON subjects.coursenumber = enr_stat.coursenumber where term = '$selected_val'");
+                    $stmt = $pdo->query("SELECT subjects.coursenumber as 'Course No.', subjects.destitle as 'Descriptive Title', enr_stat.term as 'Term', subjects.units as 'Units', enr_stat.number_of_students as 'Number of Students' FROM subjects INNER JOIN enr_stat ON subjects.coursenumber = enr_stat.coursenumber where term = '$selected_val'");
                 }    
             } else {
             include 'dbcon.php';
-            $stmt = $pdo->query("SELECT subjects.coursenumber as 'Course No.', subjects.destitle as 'Descriptive Title', enr_stat.term as 'Term', subjects.units as 'Units' FROM subjects INNER JOIN enr_stat ON subjects.coursenumber = enr_stat.coursenumber");
+            $stmt = $pdo->query("SELECT subjects.coursenumber as 'Course No.', subjects.destitle as 'Descriptive Title', enr_stat.term as 'Term', subjects.units as 'Units', enr_stat.number_of_students as 'Number of Students' FROM subjects INNER JOIN enr_stat ON subjects.coursenumber = enr_stat.coursenumber");
             
             }
             ?>

@@ -166,7 +166,7 @@
                     </form>
                 </div>
                  <div class="col-md-2" style="left: 40%">
-                    <h4><p>Total Units: <b>
+                    <h4><p>Total Units: <b><span id="countRow"></span>
                         <?php echo $totalunits;?></b></p></h4>
                 </div>
                  <div class="col-md-3" style="left: -16.5%">
@@ -410,6 +410,30 @@
                  var i = r.parentNode.parentNode.rowIndex;
                  document.getElementById("copy").deleteRow(i);
             }
+            
+            document.getElementById("countRow").innerHTML = count;
+            
+            //function refresh(){
+               // if (localStorage.getItem("list0") != null) {     
+                    //for(i = 0; i <= localStorage.length; i++){
+                      //  var stores = localStorage.getItem("list" + i);
+                      //  var jsonString = JSON.parse(stores); 
+                      //  var thatTable = document.getElementById("copy");
+                    //    var newRow = thatTable.insertRow(-1);
+                      //  var newCell1 = newRow.insertCell(0);
+                        //newCell1.innerHTML = courseNo;
+                        //var newCell2 = newRow.insertCell(-1);
+                    //    newCell2.innerHTML = descriptive;
+                      //  var newCell3 = newRow.insertCell(-1);
+                    //    newCell3.innerHTML = term;
+                      //  var newCell4 = newRow.insertCell(-1);
+                    //    newCell4.innerHTML = unit;
+                      //  var newCell5 = newRow.insertCell(-1);
+                        //newCell5.innerHTML = t;
+
+                  // }
+               // }   
+          //  }
         </script>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>

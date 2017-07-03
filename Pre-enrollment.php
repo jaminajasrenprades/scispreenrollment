@@ -167,8 +167,8 @@
                     </form>
                 </div>
                 <div class="col-md-2">
-                    <h4><p>Total Units: <b>
-                        <?php echo $totalunits;?></b></p></h4>
+                    <p>Total Unit(s): <b>
+                        <?php echo $totalunits;?></b></p>
                 </div>
             </div>
             <br>
@@ -209,7 +209,7 @@
                                   echo "<td>".$row['Course No.']."</td>";
                                   echo "<td>".$row['Descriptive Title']."</td>";
                                   echo "<td>".$row['Term']."</td>";
-                                  echo "<td>".$row['Units']."</td>";
+                                  echo "<td class='unit'>".$row['Units']."</td>";
                                   echo "<input type='hidden' name='CourseNo' value='".$row['Course No.']."'/>";
                                   echo "<input type='hidden' name='descrp' value='".$row['Descriptive Title']."'/>";
                                   echo "<input type='hidden' name='term' value='".$row['Term']."'/>";
@@ -258,7 +258,7 @@
                                 echo "<td>".$course."</td>";
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$term."</td>";
-                                echo "<td>".$units."</td>";
+                                echo "<td class='unit'>".$units."</td>";
                                 echo "<td>
                                 <button onclick=clearData(this);deleteRow(this); class='btn btn-default btn-sm'>
                                 <span class='glyphicon glyphicon-remove' aria-hidden='true'></span>
@@ -288,6 +288,7 @@
                 return $data;
 		}
 		?>
+        </div>
 
         <script>
             function resetIdNumber(){
@@ -352,13 +353,13 @@
 
                 var newCell1 = newRow.insertCell(0);
                 newCell1.innerHTML = courseNo;
-                var newCell2 = newRow.insertCell(-1);
+                var newCell2 = newRow.insertCell(1);
                 newCell2.innerHTML = descriptive;
-                var newCell3 = newRow.insertCell(-1);
+                var newCell3 = newRow.insertCell(2);
                 newCell3.innerHTML = term;
-                var newCell4 = newRow.insertCell(-1);
+                var newCell4 = newRow.insertCell(3);
                 newCell4.innerHTML = unit;
-                var newCell5 = newRow.insertCell(-1);
+                var newCell5 = newRow.insertCell();
                 newCell5.innerHTML = t;
             }
 
@@ -393,5 +394,6 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        
       </body>
 </html>

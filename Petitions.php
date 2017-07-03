@@ -264,7 +264,7 @@
                                 echo "<td>".$course."</td>";
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$term."</td>";
-                                echo "<td class="unit">".$units."</td>";
+                                echo "<td>".$units."</td>";
                                 echo "<td>".$numberofstudents."</td>";
                                 echo "<td>
                                 <button onclick=clearData(this);deleteRow(this); class='btn btn-default btn-sm'>
@@ -411,10 +411,6 @@
                  var i = r.parentNode.parentNode.rowIndex;
                  document.getElementById("copy").deleteRow(i);
             }
-            
-            var total=0; 
-            $('.unit').each(function(){ total+=parseInt($(this).text()); }); 
-            $('.p_tag_class').html('Total Units:' +total+'<b> </b>');
             
             //function refresh(){
                // if (localStorage.getItem("list0") != null) {     

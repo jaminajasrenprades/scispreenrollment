@@ -76,8 +76,8 @@
       </div>
     </div>
 </nav>
-<!--/ nav-->
-        
+<!--/ nav--> 
+    
         <div class="container-fluid">
             <h3 style="margin-top:15%" align="center">First Year - First Semester</h3>
             <?php

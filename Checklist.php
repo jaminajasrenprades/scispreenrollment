@@ -77,10 +77,19 @@
     </div>
 </nav>
 <!--/ nav-->
+    
+        <header>
+            <div class="container text-center">
+                <div class="wrapper wow fadeIn delay-05s " >
+                    <h2 class="top-title" style="margin-top:15%">Curriculum Checklist</h2>
+                </div>
+            </div>
+        </header>
+        <!--/ header-->
        
       <div class="container-fluid">
           <div class="col-md-10 col-md-offset-1"> 
-              <table class="table table-bordered" id="checklistInfo" style="margin-top:15%">
+              <table class="table table-bordered" id="checklistInfo">
                 <?php
                 $id= $_SESSION['username'];
                 $con = mysqli_connect('localhost', 'root', '');
@@ -138,10 +147,15 @@
                                 echo "<td>".$courseno."</td>"; 
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
-                                echo "
-                                    <td><span class='done'><input type='checkbox' class='done' name='Status[]' value='$courseno' />Done</td>";
-                                echo "
-                                    <td><span class='enrolled'><input type='checkbox' class='enrolled' name='Status[]' value='$courseno' />Currently Enrolled</td>";
+                                echo "<td>
+                                    <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='done'><input type='checkbox' class='control-label' name='checkbox1[]' value='$courseno' />Done
+                                    </form>
+                                    </td>";
+                                echo "<td>
+                                    <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='enrolled'><input type='checkbox' class='control-label' name='checkbox2[]' value='$courseno' />Currently Enrolled
+                                    </td>";  
                                 echo "</tr>";
                                 }
                               ?>
@@ -206,11 +220,14 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <span class='done'><input type='checkbox' class='done' name='Status[]' value='$courseno' />Done
+                                    <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='done'><input type='checkbox' class='control-label' name='checkbox1[]' value='$courseno' />Done
+                                    </form>
                                     </td>";
                                 echo "<td>
-                                    <span class='enrolled'><input type='checkbox' class='enrolled' name='Status[]' value='$courseno' />Currently Enrolled
-                                    </td>";
+                                    <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='enrolled'><input type='checkbox' class='control-label' name='checkbox2[]' value='$courseno' />Currently Enrolled
+                                    </td>";  
                                 echo "</tr>";
                                 }
                               ?>
@@ -275,11 +292,14 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <span class='done'><input type='checkbox' class='done' name='Status[]' value='$courseno' />Done
+                                    <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='done'><input type='checkbox' class='control-label' name='checkbox1[]' value='$courseno' />Done
+                                    </form>
                                     </td>";
                                 echo "<td>
-                                    <span class='enrolled'><input type='checkbox' class='enrolled' name='Status[]' value='$courseno' />Currently Enrolled
-                                    </td>";
+                                    <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='enrolled'><input type='checkbox' class='control-label' name='checkbox2[]' value='$courseno' />Currently Enrolled
+                                    </td>";  
                                 echo "</tr>";
                                 }
                               ?>
@@ -344,11 +364,14 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <span class='done'><input type='checkbox' class='done' name='Status[]' value='$courseno' />Done
+                                    <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='done'><input type='checkbox' class='control-label' name='checkbox1[]' value='$courseno' />Done
+                                    </form>
                                     </td>";
                                 echo "<td>
-                                    <span class='enrolled'><input type='checkbox' class='enrolled' name='Status[]' value='$courseno' />Currently Enrolled
-                                    </td>";
+                                    <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='enrolled'><input type='checkbox' class='control-label' name='checkbox2[]' value='$courseno' />Currently Enrolled
+                                    </td>";  
                                 echo "</tr>";
                                 }
                               ?>
@@ -413,11 +436,14 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <span class='done'><input type='checkbox' class='done' name='Status[]' value='$courseno' />Done
+                                    <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='done'><input type='checkbox' class='control-label' name='checkbox1[]' value='$courseno' />Done
+                                    </form>
                                     </td>";
                                 echo "<td>
-                                    <span class='enrolled'><input type='checkbox' class='enrolled' name='Status[]' value='$courseno' />Currently Enrolled
-                                    </td>";
+                                    <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='enrolled'><input type='checkbox' class='control-label' name='checkbox2[]' value='$courseno' />Currently Enrolled
+                                    </td>";  
                                 echo "</tr>";
                                 }
                               ?>
@@ -482,11 +508,14 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <span class='done'><input type='checkbox' class='done' name='Status[]' value='$courseno' />Done
+                                    <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='done'><input type='checkbox' class='control-label' name='checkbox1[]' value='$courseno' />Done
+                                    </form>
                                     </td>";
                                 echo "<td>
-                                    <span class='enrolled'><input type='checkbox' class='enrolled' name='Status[]' value='$courseno' />Currently Enrolled
-                                    </td>";
+                                    <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='enrolled'><input type='checkbox' class='control-label' name='checkbox2[]' value='$courseno' />Currently Enrolled
+                                    </td>";  
                                 echo "</tr>";
                                 }
                               ?>
@@ -551,11 +580,14 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <span class='done'><input type='checkbox' class='done' name='Status[]' value='$courseno' />Done
+                                    <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='done'><input type='checkbox' class='control-label' name='checkbox1[]' value='$courseno' />Done
+                                    </form>
                                     </td>";
                                 echo "<td>
-                                    <span class='enrolled'><input type='checkbox' class='enrolled' name='Status[]' value='$courseno' />Currently Enrolled
-                                    </td>";
+                                    <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='enrolled'><input type='checkbox' class='control-label' name='checkbox2[]' value='$courseno' />Currently Enrolled
+                                    </td>";  
                                 echo "</tr>";
                                 }
                               ?>
@@ -620,11 +652,14 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <span class='done'><input type='checkbox' class='done' name='Status[]' value='$courseno' />Done
+                                    <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='done'><input type='checkbox' class='control-label' name='checkbox1[]' value='$courseno' />Done
+                                    </form>
                                     </td>";
                                 echo "<td>
-                                    <span class='enrolled'><input type='checkbox' class='enrolled' name='Status[]' value='$courseno' />Currently Enrolled
-                                    </td>";
+                                    <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='enrolled'><input type='checkbox' class='control-label' name='checkbox2[]' value='$courseno' />Currently Enrolled
+                                    </td>";  
                                 echo "</tr>";
                                 }
                               ?>
@@ -689,11 +724,14 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <span class='done'><input type='checkbox' class='done' name='Status[]' value='$courseno' />Done
+                                    <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='done'><input type='checkbox' class='control-label' name='checkbox1[]' value='$courseno' />Done
+                                    </form>
                                     </td>";
                                 echo "<td>
-                                    <span class='enrolled'><input type='checkbox' class='enrolled' name='Status[]' value='$courseno' />Currently Enrolled
-                                    </td>";
+                                    <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='enrolled'><input type='checkbox' class='control-label' name='checkbox2[]' value='$courseno' />Currently Enrolled
+                                    </td>";  
                                 echo "</tr>";
                                 }
                               ?>
@@ -758,11 +796,14 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <span class='done'><input type='checkbox' class='done' name='Status' value='$courseno' />Done
+                                    <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='done'><input type='checkbox' class='control-label' name='checkbox1[]' value='$courseno' />Done
+                                    </form>
                                     </td>";
                                 echo "<td>
-                                    <span class='enrolled'><input type='checkbox' class='enrolled' name='Status' value='$courseno' />Currently Enrolled
-                                    </td>";
+                                    <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='enrolled'><input type='checkbox' class='control-label' name='checkbox2[]' value='$courseno' />Currently Enrolled
+                                    </td>";  
                                 echo "</tr>";
                                 }
                               ?>
@@ -827,11 +868,14 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                    <span class='done'><input type='checkbox' class='done' name='Status' value='$courseno' />Done
+                                    <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='done'><input type='checkbox' class='control-label' name='checkbox1[]' value='$courseno' id='status1'/>Done
+                                    </form>
                                     </td>";
                                 echo "<td>
-                                    <span class='enrolled'><input type='checkbox' class='enrolled' name='Status' value='$courseno' />Currently Enrolled
-                                    </td>";
+                                    <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='enrolled'><input type='checkbox' class='control-label' name='checkbox2[]' value='$courseno' id='status2'/>Currently Enrolled
+                                    </td>";  
                                 echo "</tr>";
                                 }
                               ?>
@@ -896,15 +940,14 @@
                                 echo "<td>".$desctitle."</td>";
                                 echo "<td>".$units."</td>";
                                 echo "<td>
-                                <form action='Updated_Checklist.php' method='POST'>
-                                    <span class='done'><input type='checkbox' class='done' name='Status[]' value='$courseno'/>Done
+                                <form action='#' method='POST'>
+                                    <span class='done'><input type='checkbox' class='control-label' name='checkbox1[]' value='" . $row['Course Number'] . "' id='status1'/>Done
                                 </form>
                                     </td>";
                                 echo "<td>
-                                <form action='Updated_Checklist.php' method='POST'>
-                                    <span class='enrolled'><input type='checkbox' class='enrolled' name='Status[]' value='$courseno'/>Currently Enrolled
-                                </form>
-                                    </td>";
+                                    <form action='Updated_Checklist.php' method='POST'>
+                                    <span class='enrolled'><input type='checkbox' class='control-label' name='checkbox2[]' value='" . $row['Course Number'] . "' id='status2'/>Currently Enrolled
+                                    </td>";  
                                 echo "</tr>";
                                 }
                               ?>
@@ -917,7 +960,7 @@
         <label class="col-sm-3 control-label">&nbsp;</label>
           <div class="col-sm-8">
           <form action="Updated_Checklist.php" method="post">
-            <input type="submit" name="add" class="btn btn-sm btn-info" value="Update Checklist" style="margin-left:80%">
+            <input type="submit" name="submit" class="btn btn-sm btn-info" value="Update Checklist" style="margin-left:80%">
             <a href="Checklist.php" class="btn btn-sm btn-info">Cancel</a>
           </form>
           <?php
@@ -928,20 +971,35 @@
             $courseno = $row['Course Number'];
             $desctitle = $row['Descriptive Title'];
             $units =  $row['Units'];
-            
-            
-            if(isset($_POST['submit'])) {
-                for ($i=0; $i<sizeof($checkBox); $i++) {
-                    $ery_1="SELECT * FROM checklist";
-                    $ery="INSERT INTO updated_checklist (status) VALUES ('" . $checkbox . "')";
-                    $ery .= "('" . $checkBox[$i] . "'),";
-                    $ery = rtrim($ery,',');
+                        
+                if(isset($_POST["submit"])) {
+                        $query_checklist = "SELECT * FROM checklist NATURAL JOIN curriculum_checklist  NATURAL JOIN updated_checklist";
+                        $result = mysqli_query($con,$query_checklist);
+                        $curriculumID = '$curriculumID';
+                        $status = '$status';
+                        $checklistID = '$checklistID';
                     
-                    mysql_query($query) or die (mysql_error() );
-                    echo "Complete";
+                    foreach($_POST['checkbox1'] as $checkbox1) {
+                        $array_checkbox1 = $_POST['checkbox1'];
+                        $q1 = "INSERT INTO updated_checklist (curriculumID, status, id_number, checklistID) VALUES ('$curriculumID', '$status', '$id', '$checklistId')";
+                        $result = mysqli_query($con,$q2);
+                    }
+                    
+                    foreach($_POST['checkbox2'] as $checkbox2) {
+                        $array_checkbox2 = $_POST['checkbox2'];
+                        $q2 = "INSERT INTO updated_checklist (curriculumID, status, id_number,
+                        checklistID) VALUES ('$curriculumID', '$status', '$id', '$checklistId')";
+                        $result = mysqli_query($con,$q2);
+                    }
+                    
+                    if($status == checkbox1) {
+                        echo "Done.";
+                    } elseif ($status == checkbox2) {
+                        echo "Currently enrolled.";
+                    } else 
+                        echo "Not Done.";
                 }
-            }
-          ?>
+            ?>
           </div>          
         </div>
     </div>
